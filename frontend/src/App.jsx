@@ -191,12 +191,12 @@ export default function FinancialAnalysisApp() {
   ];
 
   return (
-    <div className="h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex flex-col">
+    <div className="h-screen bg-gradient-to-br from-blue-50 to-red-100 flex flex-col">
       {/* Header */}
-      <div className="bg-white shadow-md px-6 py-4 border-b-2 border-indigo-500">
+      <div className="bg-white shadow-md px-6 py-4 border-b-2 border-red-500">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <TrendingUp className="text-indigo-600" size={32} />
+            <TrendingUp className="text-red-600" size={32} />
             <div>
               <h1 className="text-2xl font-bold text-gray-800">Financial Analysis AI</h1>
               <p className="text-sm text-gray-600">Investment Decision Support System</p>
@@ -207,7 +207,7 @@ export default function FinancialAnalysisApp() {
               onClick={() => setActiveTab('dashboard')}
               className={`px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 ${
                 activeTab === 'dashboard'
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-red-600 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -218,7 +218,7 @@ export default function FinancialAnalysisApp() {
               onClick={() => setActiveTab('chat')}
               className={`px-4 py-2 rounded-lg font-medium transition ${
                 activeTab === 'chat'
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-red-600 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -228,7 +228,7 @@ export default function FinancialAnalysisApp() {
               onClick={() => setActiveTab('upload')}
               className={`px-4 py-2 rounded-lg font-medium transition ${
                 activeTab === 'upload'
-                  ? 'bg-indigo-600 text-white'
+                  ? 'bg-red-600 text-white'
                   : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
               }`}
             >
@@ -252,7 +252,7 @@ export default function FinancialAnalysisApp() {
                 <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div className="flex items-center gap-2">
-                      <Newspaper className="text-indigo-600" size={24} />
+                      <Newspaper className="text-red-600" size={24} />
                       <h3 className="text-xl font-semibold text-gray-800">Top Market News</h3>
                     </div>
                     <button
@@ -279,7 +279,7 @@ export default function FinancialAnalysisApp() {
                       {news.map((article, idx) => (
                         <div key={idx} className="border-b border-gray-200 pb-4 last:border-0">
                           <a href={article.url} target="_blank" rel="noopener noreferrer" className="group">
-                            <h4 className="font-semibold text-gray-900 group-hover:text-indigo-600 transition mb-1">
+                            <h4 className="font-semibold text-gray-900 group-hover:text-red-600 transition mb-1">
                               {article.title}
                             </h4>
                             <p className="text-sm text-gray-600 mb-2">{article.description}</p>
@@ -380,7 +380,7 @@ export default function FinancialAnalysisApp() {
                 {/* AI Insights Block */}
                 <div className="bg-white rounded-lg shadow-lg p-6">
                   <div className="flex items-center gap-2 mb-4">
-                    <TrendingUp className="text-indigo-600" size={24} />
+                    <TrendingUp className="text-red-600" size={24} />
                     <h3 className="text-lg font-semibold text-gray-800">AI Insights</h3>
                   </div>
                   <div className="space-y-3">
@@ -405,12 +405,12 @@ export default function FinancialAnalysisApp() {
               </div>
 
               {/* Instructions for Adding More Blocks */}
-              <div className="mt-6 bg-indigo-50 border-2 border-dashed border-indigo-300 rounded-lg p-6">
-                <h4 className="font-semibold text-indigo-900 mb-2">Add More Dashboard Blocks</h4>
-                <p className="text-sm text-indigo-700 mb-3">
+              <div className="mt-6 bg-red-50 border-2 border-dashed border-red-300 rounded-lg p-6">
+                <h4 className="font-semibold text-red-900 mb-2">Add More Dashboard Blocks</h4>
+                <p className="text-sm text-red-700 mb-3">
                   To add more widgets to your dashboard, simply copy any of the existing blocks above and customize:
                 </p>
-                <ul className="text-sm text-indigo-700 space-y-1 list-disc list-inside">
+                <ul className="text-sm text-red-700 space-y-1 list-disc list-inside">
                   <li>Change the icon and colors</li>
                   <li>Update the API endpoint in API_CONFIG</li>
                   <li>Modify the data structure to match your API response</li>
@@ -432,7 +432,7 @@ export default function FinancialAnalysisApp() {
                     <button
                       key={idx}
                       onClick={() => setInputText(question)}
-                      className="text-left px-4 py-2 bg-white rounded-lg border border-gray-300 hover:border-indigo-400 hover:bg-indigo-50 transition text-sm"
+                      className="text-left px-4 py-2 bg-white rounded-lg border border-gray-300 hover:border-red-400 hover:bg-red-50 transition text-sm"
                     >
                       {question}
                     </button>
@@ -445,7 +445,7 @@ export default function FinancialAnalysisApp() {
               {messages.length === 0 ? (
                 <div className="h-full flex items-center justify-center">
                   <div className="text-center">
-                    <TrendingUp className="mx-auto text-indigo-300 mb-4" size={64} />
+                    <TrendingUp className="mx-auto text-red-300 mb-4" size={64} />
                     <h3 className="text-xl font-semibold text-gray-700 mb-2">
                       Welcome to Financial Analysis AI
                     </h3>
@@ -464,13 +464,13 @@ export default function FinancialAnalysisApp() {
                       <div
                         className={`max-w-xl px-4 py-3 rounded-lg ${
                           message.sender === 'user'
-                            ? 'bg-indigo-600 text-white'
+                            ? 'bg-red-600 text-white'
                             : 'bg-gray-100 text-gray-800'
                         }`}
                       >
                         <p className="text-sm whitespace-pre-wrap">{message.text}</p>
                         <p className={`text-xs mt-1 ${
-                          message.sender === 'user' ? 'text-indigo-200' : 'text-gray-500'
+                          message.sender === 'user' ? 'text-red-200' : 'text-gray-500'
                         }`}>
                           {message.timestamp}
                         </p>
@@ -500,13 +500,13 @@ export default function FinancialAnalysisApp() {
                   onChange={(e) => setInputText(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && !isLoading && handleSendMessage()}
                   placeholder="Ask about financial metrics, investment decisions..."
-                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                  className="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                   disabled={isLoading}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={!inputText.trim() || isLoading}
-                  className="px-6 py-3 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition flex items-center gap-2"
+                  className="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition flex items-center gap-2"
                 >
                   <Send size={20} />
                   Send
@@ -521,14 +521,14 @@ export default function FinancialAnalysisApp() {
           <div className="h-full flex items-center justify-center p-4">
             <div className="bg-white rounded-lg shadow-lg p-8 max-w-2xl w-full">
               <div className="text-center mb-6">
-                <FileText className="mx-auto text-indigo-600 mb-4" size={64} />
+                <FileText className="mx-auto text-red-600 mb-4" size={64} />
                 <h2 className="text-2xl font-bold text-gray-800 mb-2">Upload Financial Reports</h2>
                 <p className="text-gray-600">
                   Upload PDF financial reports to add them to the AI database for analysis
                 </p>
               </div>
 
-              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-indigo-400 transition mb-4">
+              <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 text-center hover:border-red-400 transition mb-4">
                 <input
                   type="file"
                   accept=".pdf"
@@ -572,7 +572,7 @@ export default function FinancialAnalysisApp() {
               <button
                 onClick={handleUploadToDatabase}
                 disabled={!uploadedFile || isLoading}
-                className="w-full py-3 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
+                className="w-full py-3 bg-red-600 text-white rounded-lg font-medium hover:bg-red-700 disabled:bg-gray-400 disabled:cursor-not-allowed transition"
               >
                 {isLoading ? 'Uploading...' : 'Upload to Database'}
               </button>
