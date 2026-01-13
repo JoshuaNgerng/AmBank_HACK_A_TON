@@ -1,0 +1,44 @@
+version: "3.9"
+
+services:
+  db:
+    container_name: db
+    build:
+      context: ./db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Persistent data storage for PostgreSQL
+    ports:
+      - "5432:5432"  # Expose port 5432 for external access
+    env_file:
+      - .env # Load environment variables
+
+  backend:
+    build:
+      context: ./backend
+    container_name: fastapi
+    restart: always
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      POSTGRES_HOST: db
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./db/postgres_data
+      o: bind # Bind mount for local PostgreSQL data
+  
