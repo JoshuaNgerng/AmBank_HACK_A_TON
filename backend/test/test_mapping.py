@@ -80,7 +80,7 @@ def from_dict(model_class, data: dict):
         if rel.uselist:
             if isinstance(value, list):
                 children = [
-                    from_dict(target, item)
+                    from_dict(target, item) # type: ignore
                     for item in value
                     if isinstance(item, Mapping)
                 ]
@@ -89,7 +89,7 @@ def from_dict(model_class, data: dict):
         # many-to-one / one-to-one
         else:
             if isinstance(value, Mapping):
-                setattr(obj, key, from_dict(target, value))
+                setattr(obj, key, from_dict(target, value)) # type: ignore
 
     return obj
 

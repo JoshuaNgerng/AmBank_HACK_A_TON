@@ -163,7 +163,8 @@ def extract_statement(data):
     for d in data:
         c = d.get('category')
         buffer = prompt_ai(categories[c], d.get('text'), d.get('tables'))
-        buffer_ = json.loads(buffer)
+        assert buffer is not None
+        buffer_ = json.loads(buffer) 
         buffer = { 'category': c, 'source': d.get('source') }
         buffer['data'] = buffer_
         res.append(buffer)
@@ -175,7 +176,7 @@ if __name__ == '__main__':
 
     with open('debug-res.json', 'r') as f:
         data = json.load(f)
-    cleaned_data = extract_statement_info(data)
+    cleaned_data = cleanup_statement_info(data)
     res = extract_statement(cleaned_data)
     with open('fin-res.json', 'w') as f:
         json.dump(res, f, indent=4)
