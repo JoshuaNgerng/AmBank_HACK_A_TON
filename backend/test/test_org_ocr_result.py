@@ -145,19 +145,19 @@ pages = gen_pages_info(result)
 with open('debug2.json', 'w') as f:
     json.dump(pages, f, indent=4)
 
-chunks = clean_json(build_chunks(pages))
+# chunks = clean_json(build_chunks(pages))
 
-with open('debug3.json', 'w') as f:
-    json.dump(chunks, f, indent=4)
+# with open('debug3.json', 'w') as f:
+#     json.dump(chunks, f, indent=4)
 
-def merge_chunk_tables(chunk):
-    merged = []
-    for t in chunk["tables"]:
-        if not merged:
-            merged = t
-        else:
-            merged.extend(t[1:])   # skip duplicate header
-    return merged
+# def merge_chunk_tables(chunk):
+#     merged = []
+#     for t in chunk["tables"]:
+#         if not merged:
+#             merged = t
+#         else:
+#             merged.extend(t[1:])   # skip duplicate header
+#     return merged
 
-with open('debug4.json', 'w') as f:
-    json.dump(merge_chunk_tables(chunks), f, indent=4)
+# with open('debug4.json', 'w') as f:
+#     json.dump(merge_chunk_tables(chunks), f, indent=4)

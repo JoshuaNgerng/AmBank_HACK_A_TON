@@ -1,0 +1,60 @@
+[
+    {
+        "revenue": 213593000,
+        "cost_of_goods_sold": 204086000,
+        "gross_profit": 9507000,
+        "operating_expenses": 6025000,
+        "operating_income": 7307000,
+        "finance_costs": 1725000,
+        "profit_before_tax": 5582000,
+        "tax": 1529000,
+        "net_income": 4053000,
+        "eps": 0.0047,
+        "period": "30/09/2025"
+    },
+    {
+        "current_assets": 220898000,
+        "non_current_assets": 44650000,
+        "total_assets": 265548000,
+        "current_liabilities": 164386000,
+        "non_current_liabilities": 26588000,
+        "total_liabilities": 190974000,
+        "equity": 74574000,
+        "period": "30/09/2025"
+    },
+    {
+        "operating_cash_flow": 5371000,
+        "investing_cash_flow": -198000,
+        "financing_cash_flow": 4728000,
+        "net_change_in_cash": 9901000,
+        "beginning_cash": 89667000,
+        "ending_cash": 99568000,
+        "period": "30/09/2025"
+    },
+    {
+        "revenue": 213593000,
+        "cost_of_goods_sold": 204086000,
+        "gross_profit": 9507000,
+        "operating_expenses": 3680000,
+        "operating_income": 5820000,
+        "finance_costs": 0,
+        "profit_before_tax": 5582000,
+        "tax": 1529000,
+        "net_income": 4053000,
+        "eps": null,
+        "period": "30/09/2025"
+    },
+    {
+        "revenue": null,
+        "cost_of_goods_sold": null,
+        "gross_profit": null,
+        "operating_expenses": null,
+        "operating_income": null,
+        "finance_costs": null,
+        "profit_before_tax": null,
+        "tax": null,
+        "net_income": 4053000,
+        "eps": 0.0047,
+        "period": "30/09/2025"
+    }
+]

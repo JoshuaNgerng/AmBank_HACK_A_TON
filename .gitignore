@@ -218,6 +218,7 @@ __marimo__/
 # screts
 .env
 .env_d
+.DS_Store
 debug*
 *pdf
 

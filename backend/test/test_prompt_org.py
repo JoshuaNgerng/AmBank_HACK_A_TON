@@ -1,10 +1,9 @@
 from string import Template
 from unicodedata import category
 
-template_sys = "You are analyzing pages from a company's annual report."
+template_sys = """
+You are analyzing pages from a company's annual report.
 
-template_user = Template(
-"""
 Classify this page as ONE of:
 - income_statement
 - balance_sheet
@@ -13,13 +12,15 @@ Classify this page as ONE of:
 - other
 
 Return ONLY the category name.
+"""
 
+template_user = Template(
+"""
 PAGE TEXT:
 $text
 
 TABLES:
 $tables
-
 """
 )
 

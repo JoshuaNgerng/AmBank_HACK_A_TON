@@ -2,8 +2,9 @@
 
 from urllib.parse import quote_plus
 from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, Session
+from sqlalchemy.orm import sessionmaker, Session, class_mapper
 from core.config import get_settings
+from collections.abc import Mapping
 from typing import Generator
 
 settings = get_settings()
@@ -51,3 +52,50 @@ def get_db() -> Generator[Session, None, None]:
 def get_session() -> Session:
     """Get a new session for manual connection management."""
     return SessionLocal()
+
+
+def from_dict(model_class, data: dict):
+    """
+    Create a SQLAlchemy model instance from a dict.
+    Uses __table__ and class_mapper instead of sqlalchemy.inspect.
+    Supports nested relationships.
+    """
+    if data is None:
+        return None
+
+    obj = model_class()
+
+    # ---- Columns ----
+    column_names = {c.name for c in model_class.__table__.columns}
+
+    for name in column_names:
+        if name in data:
+            setattr(obj, name, data[name])
+
+    # ---- Relationships ----
+    mapper = class_mapper(model_class)
+
+    for rel in mapper.relationships:
+        key = rel.key
+        if key not in data:
+            continue
+
+        value = data[key]
+        target = rel.mapper.class_
+
+        # one-to-many / many-to-many
+        if rel.uselist:
+            if isinstance(value, list):
+                children = [
+                    from_dict(target, item) # type: ignore
+                    for item in value
+                    if isinstance(item, Mapping)
+                ]
+                setattr(obj, key, children)
+
+        # many-to-one / one-to-one
+        else:
+            if isinstance(value, Mapping):
+                setattr(obj, key, from_dict(target, value)) # type: ignore
+
+    return obj

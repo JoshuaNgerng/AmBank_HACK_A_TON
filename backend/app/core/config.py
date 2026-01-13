@@ -24,6 +24,11 @@ class Settings(BaseSettings):
 
     LOG_LEVEL: str = "INFO"
 
+    AZURE_TARGET_URL: str
+    AZURE_API_KEY: str
+    AZURE_DOC_URL: str
+    AZURE_DOC_KEY: str
+
     class Config:
         env_file = ".env"
         env_file_encoding = "utf-8"

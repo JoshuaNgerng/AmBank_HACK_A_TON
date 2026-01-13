@@ -1,0 +1,812 @@
+[
+    {
+        "text": "PSP\nGROUP\nPSP ENERGY BERHAD\n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\nUNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025\nUNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF PROFIT OR LOSS AND OTHER\nCOMPREHENSIVE INCOME (1)\nNote\nINDIVIDUAL QUARTER\nCUMULATIVE QUARTER\n30.09.2025\n(2) 30.09.2024\n30.09.2025\nRM'000\n(2) 30.09.2024\nRM'000\nRM'000\nRM'000\nRevenue\nA10\n213,593\nN/A\n213,593\nN/A\nCost of sales\n(204,086)\nN/A\n(204,086)\nN/A\nGross profit\n9,507\nN/A\n9,507\nN/A\nOther income\n3,825\nN/A\n3,825\nN/A\nSelling and distribution expenses\n(2,693)\nN/A\n(2,693)\nN/A\nAdministrative costs\n(3,332)\nN/A\n(3,332)\nN/A\nOperating profit\n7,307\nN/A\n7,307\nN/A\nFinance costs\n(1,725)\nN/A\n(1,725)\nN/A\nProfit before tax\nB5\n5,582\nN/A\n5,582\nN/A\nIncome tax expense\nB6\n(1,529)\nN/A\n(1,529)\nN/A\nProfit for the financial period,\nrepresenting total comprehensive\nincome for the financial period\n4,053\nN/A\n4,053\nN/A\nProfit attributable to:\nOwners of the Company\n4,053\nN/A\n4,053\nN/A\nEarnings per share (\"EPS\")\nBasic and diluted (sen) (3),(4)\nB13\n0.47\nN/A\n0.47\nN/A\nNotes:\nN/A Not applicable.\n(1)\nThe basis of preparation of this unaudited condensed consolidated statements of profit or loss and other comprehensive\nincome is detailed in Note A1 of this report. It should be read in conjunction with the Accountants' Report as set out\nin the Prospectus of the PSP Energy Berhad (\"PSP Energy\" or \"Company\") dated 11 November 2025 in relation to\nits initial public offering (\"IPO\") (\"Prospectus\") as well as the accompanying explanatory notes attached in this\nreport.\n(2)\nThis is the first interim financial report being announced in compliance with the ACE Market Listing Requirements\nof Bursa Malaysia Securities Berhad (\"Bursa Securities\") (\"Listing Requirements\"). There are no comparative\nfigures for the preceding corresponding quarter and financial year-to-date, as no interim financial report has been\nprepared for the comparative periods concerned.\n2",
+        "tables": [
+            {
+                "grid": [
+                    [
+                        "",
+                        "Note",
+                        "INDIVIDUAL QUARTER",
+                        null,
+                        "CUMULATIVE QUARTER",
+                        null
+                    ],
+                    [
+                        null,
+                        null,
+                        "30.09.2025",
+                        "(2) 30.09.2024",
+                        "30.09.2025 RM'000",
+                        "(2) 30.09.2024"
+                    ],
+                    [
+                        null,
+                        null,
+                        "RM'000",
+                        "RM'000",
+                        null,
+                        "RM'000"
+                    ],
+                    [
+                        "Revenue",
+                        "A10",
+                        "213,593",
+                        "N/A",
+                        "213,593",
+                        "N/A"
+                    ],
+                    [
+                        "Cost of sales",
+                        "",
+                        "(204,086)",
+                        "N/A",
+                        "(204,086)",
+                        "N/A"
+                    ],
+                    [
+                        "Gross profit",
+                        "",
+                        "9,507",
+                        "N/A",
+                        "9,507",
+                        "N/A"
+                    ],
+                    [
+                        "Other income",
+                        "",
+                        "3,825",
+                        "N/A",
+                        "3,825",
+                        "N/A"
+                    ],
+                    [
+                        "Selling and distribution expenses",
+                        "",
+                        "(2,693)",
+                        "N/A",
+                        "(2,693)",
+                        "N/A"
+                    ],
+                    [
+                        "Administrative costs",
+                        "",
+                        "(3,332)",
+                        "N/A",
+                        "(3,332)",
+                        "N/A"
+                    ],
+                    [
+                        "Operating profit",
+                        "",
+                        "7,307",
+                        "N/A",
+                        "7,307",
+                        "N/A"
+                    ],
+                    [
+                        "Finance costs",
+                        "",
+                        "(1,725)",
+                        "N/A",
+                        "(1,725)",
+                        "N/A"
+                    ],
+                    [
+                        "Profit before tax",
+                        "B5",
+                        "5,582",
+                        "N/A",
+                        "5,582",
+                        "N/A"
+                    ],
+                    [
+                        "Income tax expense",
+                        "B6",
+                        "(1,529)",
+                        "N/A",
+                        "(1,529)",
+                        "N/A"
+                    ],
+                    [
+                        "Profit for the financial period, representing total comprehensive income for the financial period",
+                        "",
+                        "4,053",
+                        "N/A",
+                        "4,053",
+                        "N/A"
+                    ],
+                    [
+                        "Profit attributable to:",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Owners of the Company",
+                        "",
+                        "4,053",
+                        "N/A",
+                        "4,053",
+                        "N/A"
+                    ],
+                    [
+                        "Earnings per share (\"EPS\")",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Basic and diluted (sen) (3),(4)",
+                        "B13",
+                        "0.47",
+                        "N/A",
+                        "0.47",
+                        "N/A"
+                    ]
+                ],
+                "header": [
+                    "",
+                    "Note",
+                    "INDIVIDUAL QUARTER",
+                    null,
+                    "CUMULATIVE QUARTER",
+                    null
+                ],
+                "columns": 6
+            }
+        ],
+        "category": "income_statement",
+        "source": [
+            "2"
+        ]
+    },
+    {
+        "text": "PSP\nGROUP\nPSP ENERGY BERHAD\n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\nUNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025\nUNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF FINANCIAL POSITION (1)\nNote\nUNAUDITED\n30.09.2025\nRM'000\nAUDITED\n30.06.2025(2)\nRM'000\nASSETS\nNon-Current Assets\nProperty, plant and equipment\n14,528\n14,948\nRight-of-use assets\n11,319\n11,535\nInvestment properties\n17,152\n17,192\nOther investments\n84\n84\nTrade and other receivables\n1,567\n1,567\n44,650\n45,326\nCurrent Assets\nInventories\n9,290\n7,003\nCurrent tax assets\n-\n20\nTrade and other receivables\n75,827\n76,163\nCash and short-term deposits\n129,301\n119,258\n214,418\n202,444\nNon-current asset held for sale\n6,480\n6,480\n220,898\n208,924\nTOTAL ASSETS\n265,548\n254,250\nEQUITY AND LIABILITIES\nEQUITY\nShares capital\n57,000\n*\nInvested equity\n-\n7,500\nReorganisation reserve\n(49,500)\n-\nRetained earnings\n67,074\n63,021\nTOTAL EQUITY\n74,574\n70,521\nLIABILITIES\nNon-Current Liabilities\nLoans and borrowings\nB9\n25,044\n25,943\nDeferred tax liabilities\n1,544\n1,544\n26,588\n27,487\nCurrent Liabilities\nLoans and borrowings\nB9\n93,624\n86,016\nTrade and other payables\n68,444\n67,849\nCurrent tax liabilities\n2,318\n2,377\n164,386\n156,242\nTOTAL LIABILITIES\n190,974\n183,729\nTOTAL EQUITY AND LIABILITIES\n265,548\n254,250\nNet assets per share attributable to owners of the Company\n0.09\n0.08\n(RM) (3)\n4PSP\nGROUP\nPSP ENERGY BERHAD\n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\nUNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025\nUNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF FINANCIAL POSITION (CONT'D) (1)\nNotes:\n*\nRepresents RM100.00 only.\n(1)\nThe basis of preparation of the unaudited condensed consolidated statements of financial position is detailed in Note\nAl of this report. It should be read in conjunction with the Accountants' Report as set out in the Prospectus, as well\nas the accompanying explanatory notes attached to this report.\n(2)\nThe comparative figures as at 30 June 2025 were prepared on a combined basis whereby it is assumed that the Group\nhas been operating as a single economic entity throughout the financial year ended 30 June 2025 since the combining\nentities were under common control throughout the financial year by virtue of common controlling shareholders.\n(3)\nComputed based on total equity divided by the Company's enlarged total number of 855,001,500 shares, adjusted\nretrospectively for the effect of the subdivision of every 1 share into 15 new subdivided shares, which was completed\non 6 October 2025.\n[THE REST OF THIS PAGE IS INTENTIONALLY LEFT BLANK]\n5",
+        "tables": [
+            {
+                "grid": [
+                    [
+                        "",
+                        "Note",
+                        "UNAUDITED 30.09.2025 RM'000",
+                        "AUDITED 30.06.2025(2) RM'000"
+                    ],
+                    [
+                        "ASSETS",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Non-Current Assets",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Property, plant and equipment",
+                        "",
+                        "14,528",
+                        "14,948"
+                    ],
+                    [
+                        "Right-of-use assets",
+                        "",
+                        "11,319",
+                        "11,535"
+                    ],
+                    [
+                        "Investment properties",
+                        "",
+                        "17,152",
+                        "17,192"
+                    ],
+                    [
+                        "Other investments",
+                        "",
+                        "84",
+                        "84"
+                    ],
+                    [
+                        "Trade and other receivables",
+                        "",
+                        "1,567",
+                        "1,567"
+                    ],
+                    [
+                        "",
+                        "",
+                        "44,650",
+                        "45,326"
+                    ],
+                    [
+                        "Current Assets",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Inventories",
+                        "",
+                        "9,290",
+                        "7,003"
+                    ],
+                    [
+                        "Current tax assets",
+                        "",
+                        "-",
+                        "20"
+                    ],
+                    [
+                        "Trade and other receivables",
+                        "",
+                        "75,827",
+                        "76,163"
+                    ],
+                    [
+                        "Cash and short-term deposits",
+                        "",
+                        "129,301",
+                        "119,258"
+                    ],
+                    [
+                        "",
+                        "",
+                        "214,418",
+                        "202,444"
+                    ],
+                    [
+                        "Non-current asset held for sale",
+                        "",
+                        "6,480",
+                        "6,480"
+                    ],
+                    [
+                        "",
+                        "",
+                        "220,898",
+                        "208,924"
+                    ],
+                    [
+                        "TOTAL ASSETS",
+                        "",
+                        "265,548",
+                        "254,250"
+                    ],
+                    [
+                        "EQUITY AND LIABILITIES",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "EQUITY",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Shares capital",
+                        "",
+                        "57,000",
+                        "*"
+                    ],
+                    [
+                        "Invested equity",
+                        "",
+                        "-",
+                        "7,500"
+                    ],
+                    [
+                        "Reorganisation reserve",
+                        "",
+                        "(49,500)",
+                        "-"
+                    ],
+                    [
+                        "Retained earnings",
+                        "",
+                        "67,074",
+                        "63,021"
+                    ],
+                    [
+                        "TOTAL EQUITY",
+                        "",
+                        "74,574",
+                        "70,521"
+                    ],
+                    [
+                        "LIABILITIES",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Non-Current Liabilities",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Loans and borrowings",
+                        "B9",
+                        "25,044",
+                        "25,943"
+                    ],
+                    [
+                        "Deferred tax liabilities",
+                        "",
+                        "1,544",
+                        "1,544"
+                    ],
+                    [
+                        "",
+                        "",
+                        "26,588",
+                        "27,487"
+                    ],
+                    [
+                        "Current Liabilities",
+                        "",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Loans and borrowings",
+                        "B9",
+                        "93,624",
+                        "86,016"
+                    ],
+                    [
+                        "Trade and other payables",
+                        "",
+                        "68,444",
+                        "67,849"
+                    ],
+                    [
+                        "Current tax liabilities",
+                        "",
+                        "2,318",
+                        "2,377"
+                    ],
+                    [
+                        "",
+                        "",
+                        "164,386",
+                        "156,242"
+                    ],
+                    [
+                        "TOTAL LIABILITIES",
+                        "",
+                        "190,974",
+                        "183,729"
+                    ],
+                    [
+                        "TOTAL EQUITY AND LIABILITIES",
+                        "",
+                        "265,548",
+                        "254,250"
+                    ],
+                    [
+                        "Net assets per share attributable to owners of the Company",
+                        "",
+                        "0.09",
+                        "0.08"
+                    ],
+                    [
+                        "(RM) (3)",
+                        null,
+                        null,
+                        null
+                    ]
+                ],
+                "header": [
+                    "",
+                    "Note",
+                    "UNAUDITED 30.09.2025 RM'000",
+                    "AUDITED 30.06.2025(2) RM'000"
+                ],
+                "columns": 4
+            }
+        ],
+        "category": "balance_sheet",
+        "source": [
+            "4",
+            "5"
+        ]
+    },
+    {
+        "text": "PSP\nGROUP\nPSP ENERGY BERHAD\n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\nUNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025\nUNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS (1)\nCUMMULATIVE QUARTER\nUNAUDITED\nUNAUDITED\n30.09.2025\n30.09.2024\nRM'000\nRM'000\nCash flows from operating activities\nPBT\n5,582\nN/A\nAdjustments for:\n- Depreciation of property, plant and equipment\n767\nN/A\n- Depreciation of right-of-use assets\n216\nN/A\n- Depreciation of investment properties\n40\nN/A\n- Reversal of impairment losses on trade receivables\n(3,071)\nN/A\n- Gain on disposal of property, plant and equipment\n(36)\nN/A\n- Interest expense\n1,725\nN/A\n- Interest income\n(245)\nN/A\nOperating profits before changes in working capital\n4,978\nN/A\nChanges in working capital:\n- Inventories\n(2,287)\nN/A\n- Trade and other receivables\n3,407\nN/A\n- Trade and other payables\n595\nN/A\nNet cash generated from operations\n6,693\nN/A\n- Interests received\n245\nN/A\n- Income tax paid\n(1,567)\nN/A\nNet cash from operating activities\n5,371\nN/A\nCash flows used in investing activities\nPurchase of property, plant and equipment\n(92)\nN/A\nProceeds from disposal of property, plant and equipment\n37\nN/A\nChange in pledged deposits\n(143)\nN/A\nNet cash used in investing activities\n(198)\nN/A\n7PSP\nGROUP\nPSP ENERGY BERHAD\n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\nUNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025\nUNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS (CONTINUED) (1)\nCUMMULATIVE QUARTER\nUNAUDITED\n30.09.2025\nUNAUDITED\n30.09.2024\nRM'000\nRM'000\nCash flows from financing activities\nInterests paid\n(1,725)\nN/A\nRepayment of term loans\n(13,363)\nN/A\nDrawdown of bankers' acceptances\n124,714\nN/A\nRepayment of bankers' acceptances\n(104,425)\nN/A\nRepayment of hire purchase payables\n(323)\nN/A\nRepayment of finance lease liabilities\n(150)\nN/A\nNet cash from financing activities\n4,728\nN/A\nNet increase in cash and cash equivalents\n9,901\nN/A\nCash and cash equivalents at the beginning of the financial year\n89,667\nN/A\nCash and cash equivalents at the end of the financial period\n99,568\nN/A\nCash and cash equivalents at end of the financial period consist\nof:\nCash and bank balances\n99,568\nN/A\nShort-term deposits\n29,733\nN/A\n129,301\nN/A\nLess: Pledged deposits\n(29,733)\nN/A\n99,568\nN/A\nNotes:\nN/A\nNot applicable.\n(1)\nThe basis of preparation of the unaudited condensed consolidated statements of cash flows is detailed in Note A1 of\nthis report. It should be read in conjunction with the Accountants' Report as set out in the Prospectus, as well as the\naccompanying explanatory notes attached in this report.\n(2)\nThis is the first interim financial report being announced in compliance with the Listing Requirements. There are no\ncomparative figures for the preceding corresponding quarter and financial year-to-date as there is no interim financial\nreport prepared for the comparative quarter concerned.\n8",
+        "tables": [
+            {
+                "grid": [
+                    [
+                        "",
+                        "CUMMULATIVE QUARTER",
+                        null
+                    ],
+                    [
+                        null,
+                        "UNAUDITED",
+                        "UNAUDITED"
+                    ],
+                    [
+                        null,
+                        "30.09.2025",
+                        "30.09.2024"
+                    ],
+                    [
+                        null,
+                        "RM'000",
+                        "RM'000"
+                    ],
+                    [
+                        "Cash flows from operating activities",
+                        "",
+                        ""
+                    ],
+                    [
+                        "PBT",
+                        "5,582",
+                        "N/A"
+                    ],
+                    [
+                        "Adjustments for:",
+                        "",
+                        ""
+                    ],
+                    [
+                        "- Depreciation of property, plant and equipment",
+                        "767",
+                        "N/A"
+                    ],
+                    [
+                        "- Depreciation of right-of-use assets",
+                        "216",
+                        "N/A"
+                    ],
+                    [
+                        "- Depreciation of investment properties",
+                        "40",
+                        "N/A"
+                    ],
+                    [
+                        "- Reversal of impairment losses on trade receivables",
+                        "(3,071)",
+                        "N/A"
+                    ],
+                    [
+                        "- Gain on disposal of property, plant and equipment",
+                        "(36)",
+                        "N/A"
+                    ],
+                    [
+                        "- Interest expense",
+                        "1,725",
+                        "N/A"
+                    ],
+                    [
+                        "- Interest income",
+                        "(245)",
+                        "N/A"
+                    ],
+                    [
+                        "Operating profits before changes in working capital",
+                        "4,978",
+                        "N/A"
+                    ],
+                    [
+                        "Changes in working capital:",
+                        "",
+                        ""
+                    ],
+                    [
+                        "- Inventories",
+                        "(2,287)",
+                        "N/A"
+                    ],
+                    [
+                        "- Trade and other receivables",
+                        "3,407",
+                        "N/A"
+                    ],
+                    [
+                        "- Trade and other payables",
+                        "595",
+                        "N/A"
+                    ],
+                    [
+                        "Net cash generated from operations",
+                        "6,693",
+                        "N/A"
+                    ],
+                    [
+                        "- Interests received",
+                        "245",
+                        "N/A"
+                    ],
+                    [
+                        "- Income tax paid",
+                        "(1,567)",
+                        "N/A"
+                    ],
+                    [
+                        "Net cash from operating activities",
+                        "5,371",
+                        "N/A"
+                    ],
+                    [
+                        "Cash flows used in investing activities",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Purchase of property, plant and equipment",
+                        "(92)",
+                        "N/A"
+                    ],
+                    [
+                        "Proceeds from disposal of property, plant and equipment",
+                        "37",
+                        "N/A"
+                    ],
+                    [
+                        "Change in pledged deposits",
+                        "(143)",
+                        "N/A"
+                    ],
+                    [
+                        "Net cash used in investing activities",
+                        "(198)",
+                        "N/A"
+                    ]
+                ],
+                "header": [
+                    "",
+                    "CUMMULATIVE QUARTER",
+                    null
+                ],
+                "columns": 3
+            },
+            {
+                "grid": [
+                    [
+                        "",
+                        "CUMMULATIVE QUARTER",
+                        null
+                    ],
+                    [
+                        null,
+                        "UNAUDITED 30.09.2025",
+                        "UNAUDITED 30.09.2024"
+                    ],
+                    [
+                        null,
+                        "RM'000",
+                        "RM'000"
+                    ],
+                    [
+                        "Cash flows from financing activities",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Interests paid",
+                        "(1,725)",
+                        "N/A"
+                    ],
+                    [
+                        "Repayment of term loans",
+                        "(13,363)",
+                        "N/A"
+                    ],
+                    [
+                        "Drawdown of bankers' acceptances",
+                        "124,714",
+                        "N/A"
+                    ],
+                    [
+                        "Repayment of bankers' acceptances",
+                        "(104,425)",
+                        "N/A"
+                    ],
+                    [
+                        "Repayment of hire purchase payables",
+                        "(323)",
+                        "N/A"
+                    ],
+                    [
+                        "Repayment of finance lease liabilities",
+                        "(150)",
+                        "N/A"
+                    ],
+                    [
+                        "Net cash from financing activities",
+                        "4,728",
+                        "N/A"
+                    ],
+                    [
+                        "Net increase in cash and cash equivalents",
+                        "9,901",
+                        "N/A"
+                    ],
+                    [
+                        "Cash and cash equivalents at the beginning of the financial year",
+                        "89,667",
+                        "N/A"
+                    ],
+                    [
+                        "Cash and cash equivalents at the end of the financial period",
+                        "99,568",
+                        "N/A"
+                    ],
+                    [
+                        "Cash and cash equivalents at end of the financial period consist of:",
+                        "",
+                        ""
+                    ],
+                    [
+                        "Cash and bank balances",
+                        "99,568",
+                        "N/A"
+                    ],
+                    [
+                        "Short-term deposits",
+                        "29,733",
+                        "N/A"
+                    ],
+                    [
+                        "",
+                        "129,301",
+                        "N/A"
+                    ],
+                    [
+                        "Less: Pledged deposits",
+                        "(29,733)",
+                        "N/A"
+                    ],
+                    [
+                        "",
+                        "99,568",
+                        "N/A"
+                    ]
+                ],
+                "header": [
+                    "",
+                    "CUMMULATIVE QUARTER",
+                    null
+                ],
+                "columns": 3
+            }
+        ],
+        "category": "cash_flow",
+        "source": [
+            "7",
+            "8"
+        ]
+    },
+    {
+        "text": "PSP\nGROUP\nPSP ENERGY BERHAD\n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\nUNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025\nPART B - ADDITIONAL INFORMATION REQUIRED BY APPENDIX 9B OF THE LISTING REQUIREMENTS\nB1.\nREVIEW OF PERFORMANCE FOR CURRENT QUARTER AND FINANCIAL YEAR-TO-DATE\nINDIVIDUAL QUARTER\nCUMULATIVE QUARTER\n30.09.2025\nRM'000\n(1)30.09.2024\nRM'000\n30.09.2025\nRM'000\n(1)30.09.2024\nRM'000\nRevenue\n213,593\nN/A\n213,593\nN/A\nGross profit (\"GP\")\n9,507\nN/A\n9,507\nN/A\nProfit before tax (\"PBT\")\n5,582\nN/A\n5,582\nN/A\nProfit after tax (\"PAT\")\n4,053\nN/A\n4,053\nN/A\nNotes:\nN/A Not applicable.\n(1)\nThis is the first interim financial report for the first quarter ended 30 September 2025 being announced in\ncompliance with the Listing Requirements. There are no comparative figures for the preceding corresponding\nquarter and financial year-to-date as there is no interim financial report prepared for the comparative period\nconcerned.\nThe Group recorded revenue of RM213.6 million for the current financial quarter ended 30 September 2025, which\nwas mainly contributed from the trading of fuel products segment and distribution of fuel products segment. In terms\nof GP, the Group recorded total GP of RM9.5 million, reflecting an overall GP margin of 4.5% in the current financial\nquarter ended 30 September 2025.\nThe Group recorded a PBT and PBT margin of RM5.6 million and 2.6% respectively in the current financial quarter,\nmainly deriving from the GP recorded of RM9.5 million and other income recorded of RM3.8 million mainly arising\nfrom recovery of previously impaired trade receivables totaling to RM3.1 million.\nB2.\nCOMPARISON WITH THE IMMEDIATE PRECEDING QUARTER\nThere are no comparative figures for the immediate preceding quarter as this is the first interim financial report being\nannounced in compliance with the Listing Requirements.\n[THE REST OF THIS PAGE IS INTENTIONALLY LEFT BLANK]\n14",
+        "tables": [
+            {
+                "grid": [
+                    [
+                        "",
+                        "INDIVIDUAL QUARTER",
+                        null,
+                        "CUMULATIVE QUARTER",
+                        null
+                    ],
+                    [
+                        null,
+                        "30.09.2025 RM'000",
+                        "(1)30.09.2024 RM'000",
+                        "30.09.2025 RM'000",
+                        "(1)30.09.2024 RM'000"
+                    ],
+                    [
+                        "Revenue",
+                        "213,593",
+                        "N/A",
+                        "213,593",
+                        "N/A"
+                    ],
+                    [
+                        "Gross profit (\"GP\")",
+                        "9,507",
+                        "N/A",
+                        "9,507",
+                        "N/A"
+                    ],
+                    [
+                        "Profit before tax (\"PBT\")",
+                        "5,582",
+                        "N/A",
+                        "5,582",
+                        "N/A"
+                    ],
+                    [
+                        "Profit after tax (\"PAT\")",
+                        "4,053",
+                        "N/A",
+                        "4,053",
+                        "N/A"
+                    ]
+                ],
+                "header": [
+                    "",
+                    "INDIVIDUAL QUARTER",
+                    null,
+                    "CUMULATIVE QUARTER",
+                    null
+                ],
+                "columns": 5
+            }
+        ],
+        "category": "income_statement",
+        "source": [
+            "14"
+        ]
+    },
+    {
+        "text": "PSP\nGROUP\nPSP ENERGY BERHAD\n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\nUNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025\nPART B - ADDITIONAL INFORMATION REQUIRED BY APPENDIX 9B OF THE LISTING REQUIREMENTS\n(CONT'D)\nB12.\nEarnings per Share (\"EPS\")\nINDIVIDUAL QUARTER\nCUMULATIVE QUARTER\n30.09.2025\n30.09.2024\n30.09.2025\n30.09.2024\nProfit attributable to owners of\nthe Company (RM'000)\n4,053\nN/A\n4,053\nN/A\nNo. of Shares in issue ('000)\n(weighted average) (1)\n855,002\nN/A\n855,002\nN/A\nBasic/Diluted EPS (sen) (1),(2)\n0.47\nN/A\n0.47\nN/A\nNotes:\nN/A Not applicable.\n(1) Basic EPS is calculated based on the Company's weighted average number of ordinary shares of 855,001,500\nshares, adjusted retrospectively for the effect of the subdivision of every 1 share into 15 new subdivided shares,\nwhich was completed on 6 October 2025, and before completion of the IPO of the Company.\n(2) The basic EPS is equivalent to diluted EPS as the Company does not have any equity-dilutive instruments in\nissue as at the end of the respective financial periods.\nB13.\nDIVIDEND\nNo dividend was declared or recommended for payment by the Board of Directors during the current financial quarter\nand as at the date of this interim financial report.\nBY ORDER OF THE BOARD\nPSP ENERGY BERHAD\n1 December 2025\n22",
+        "tables": [
+            {
+                "grid": [
+                    [
+                        "",
+                        "INDIVIDUAL QUARTER",
+                        null,
+                        "CUMULATIVE QUARTER",
+                        null
+                    ],
+                    [
+                        null,
+                        "30.09.2025",
+                        "30.09.2024",
+                        "30.09.2025",
+                        "30.09.2024"
+                    ],
+                    [
+                        "Profit attributable to owners of the Company (RM'000)",
+                        "4,053",
+                        "N/A",
+                        "4,053",
+                        "N/A"
+                    ],
+                    [
+                        "No. of Shares in issue ('000) (weighted average) (1)",
+                        "855,002",
+                        "N/A",
+                        "855,002",
+                        "N/A"
+                    ],
+                    [
+                        "Basic/Diluted EPS (sen) (1),(2)",
+                        "0.47",
+                        "N/A",
+                        "0.47",
+                        "N/A"
+                    ]
+                ],
+                "header": [
+                    "",
+                    "INDIVIDUAL QUARTER",
+                    null,
+                    "CUMULATIVE QUARTER",
+                    null
+                ],
+                "columns": 5
+            }
+        ],
+        "category": "income_statement",
+        "source": [
+            "22"
+        ]
+    }
+]
