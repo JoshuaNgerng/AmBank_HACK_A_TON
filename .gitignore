@@ -363,6 +363,9 @@ vite.config.ts.timestamp-*
 .DS_Store
 debug*
 *pdf
+.vscode
+temp.txt
+
 
 #postgres data
 postgres_data

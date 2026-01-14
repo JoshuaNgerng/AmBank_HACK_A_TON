@@ -33,7 +33,7 @@ def find_closest_companies(
     while True:
         # Fetch next chunk
         companies = (
-            session.query(ReportAnalysis.id, ReportAnalysis.name)
+            session.query(ReportAnalysis.id, ReportAnalysis.company_name)
             .order_by(ReportAnalysis.id)
             .offset(offset)
             .limit(chunk_size)
@@ -45,7 +45,7 @@ def find_closest_companies(
 
         # Prepare choices for RapidFuzz
         choices = {
-            c.id: normalize(c.name)
+            c.id: normalize(c.company_name)
             for c in companies
         }
 
@@ -62,7 +62,7 @@ def find_closest_companies(
                 company = next(c for c in companies if c.id == company_id)
                 likely_matches.append({
                     "id": company.id,
-                    "name": company.name,
+                    "company_name": company.company_name,
                     "confidence": confidence,
                 })
 

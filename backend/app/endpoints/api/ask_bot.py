@@ -13,6 +13,8 @@ router = APIRouter()
 @router.post('/ask', response_model=str)
 async def ask_bot(question: UserQuestion, db: Session = Depends(get_db)) -> str:
     company_name = extract_company_name_user_prompt(question.prompt)
+    if not company_name:
+        return f"We cannot infer what company you're referring to"
     company_info = db.execute(
         Select(ReportAnalysis)
         .where(ReportAnalysis.company_name == company_name)
@@ -25,7 +27,8 @@ async def ask_bot(question: UserQuestion, db: Session = Depends(get_db)) -> str:
             selectinload(ReportAnalysis.growth_potential),
             selectinload(ReportAnalysis.qualitative_performance),
         )
-    ).scalar_one_or_none()
+        .order_by(ReportAnalysis.created_at.asc())
+    ).scalars().first()
     if not company_info:
         likely_company = find_closest_companies(db, company_name)
         likely_company = [l.get('company_name') for l in likely_company]

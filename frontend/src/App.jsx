@@ -21,13 +21,13 @@ export default function FinancialAnalysisApp() {
   };
 */
   const API_CONFIG = {
-  chatEndpoint: 'https://your-api.azurewebsites.net/api/chat',
+  chatEndpoint: 'http://localhost:8000/api/bot/ask',
   uploadEndpoint: 'http://localhost:8000/api/data/annual_report',
   newsEndpoint: 'https://your-api.azurewebsites.net/api/news', // ← Add your news API
   marketDataEndpoint: 'https://your-api.azurewebsites.net/api/market-data', // For indices
   commoditiesEndpoint: 'https://your-api.azurewebsites.net/api/commodities', // For commodities
   watchlistEndpoint: 'https://your-api.azurewebsites.net/api/watchlist', // For stocks
-  apiKey: 'YOUR_API_KEY'
+  apiKey: 'GAY'
   }; 
 
   // Fetch news when dashboard loads
@@ -111,24 +111,28 @@ export default function FinancialAnalysisApp() {
       const response = await fetch(API_CONFIG.chatEndpoint, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-          ...(API_CONFIG.apiKey && { 'Authorization': `Bearer ${API_CONFIG.apiKey}` })
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          prompt: inputText,
-          conversationHistory: messages.slice(-5)
+          prompt: inputText
         })
       });
+      // headers: {
+      //   'Content-Type': 'application/json',
+      //   ...(API_CONFIG.apiKey && { 'Authorization': `Bearer ${API_CONFIG.apiKey}` })
+      // },
+      // conversationHistory: messages.slice(-5)
 
       if (!response.ok) {
         throw new Error(`API Error: ${response.status}`);
       }
 
-      const data = await response.json();
-      
+      const data = await response.text();
+      const text = data.replace(/\\n/g, '\n');
+
       const aiResponse = {
         id: Date.now() + 1,
-        text: data.response || data.message || data.text || 'No response from AI',
+        text: text,
         sender: 'ai',
         timestamp: new Date().toLocaleTimeString()
       };
