@@ -1,70 +1,32 @@
 import json
-from copy import deepcopy
 from string import Template
-from venv import logger
 from services.azure_ai import single_prompt_answer
 
-template_income_sys = """
-You are analyzing the income statement from a company's annual report.
+template_sys = """
+You are analyzing a section from a company's annual report.
 
-MUST return a json format , no additional comments
-MUST be in the following schema
+Your task is to classify the content into exactly ONE of the following categories:
 
+FINANCIAL_STATEMENTS
+- income_statement
+- balance_sheet
+- cash_flow_statement
+
+POSSIBLE_SIGNALS
+- business_strategy         
+- growth_potential          
+- risk_analysis             
+- qualitative_performance   
+- market_sentiment          
+
+### Output Schema (STRICT)
 {
-    "revenue": 135220000,
-    "cost_of_goods_sold": 48900000,
-    "gross_profit": 86320000,
-
-    "operating_expenses": 33400000,
-    "operating_income": 52920000,
-
-    "finance_costs": 4200000,
-    "profit_before_tax": 48720000,
-
-    "tax": 8200000,
-    "net_income": 40520000,
-
-    "eps": 0.12,
-    "period": 20/01/2000
+    "financial_statement": "only one of the three | null",
+    "market_signals": ["many possible signals"]
 }
-"""
 
-template_balance_sys = """
-You are analyzing the income statement from a company's annual report.
-
-MUST return a json format , no additional comments
-MUST be in the following schema
-
-{
-    "current_assets": 210300000,
-    "non_current_assets": 364700000,
-    "total_assets": 575000000,
-
-    "current_liabilities": 135000000,
-    "non_current_liabilities": 185000000,
-    "total_liabilities": 320000000,
-
-    "equity": 255000000,
-    "period": 20/01/2000
-}
-"""
-
-template_cash_sys = """
-You are analyzing the income statement from a company's annual report.
-
-MUST return a json format , no additional comments
-MUST be in the following schema
-
-{
-    "operating_cash_flow": 55300000,
-    "investing_cash_flow": -21200000,
-    "financing_cash_flow": -8700000,
-
-    "net_change_in_cash": 25400000,
-    "beginning_cash": 61300000,
-    "ending_cash": 86700000,
-    "period": 20/01/2000
-}
+Only Return the json schema
+Do NOT return explanations.
 """
 
 template_user = Template(
@@ -77,68 +39,35 @@ $tables
 """
 )
 
-def merge_data(current, new, page_no):
-    if current is None:
-        current = deepcopy(new)
-        current['source'] = [page_no]
-        return current
-    current['text'] += new['text']
-    current['tables'].extend(new['tables'])
-    current['source'].append(page_no)
-    return current
-
-def cleanup_statement_info(data):
-    res = []
-    categories = {'income_statement', 'balance_sheet', 'cash_flow'}
-    buffer = None
-    prev_c = None
+def classify_ocr_result(data):
     for page_no, info in data.items():
-        c = info.get('category')
-        # print(c)
-        # print(c, prev_c)
-        if c not in categories:
-            # print('check1', c, prev_c)
-            if not buffer:
-                continue
-            res.append(buffer)
-            buffer = None
-            prev_c = c
-            continue
-        if prev_c is None:
-            # print('check2', c, prev_c)
-            buffer = merge_data(buffer, info, page_no)
-            prev_c = c
-            continue
-        if prev_c == c:
-            # print('check3', c, prev_c)
-            buffer = merge_data(buffer, info, page_no)
-        if prev_c not in categories:
-            # print('check4', c, prev_c)
-            buffer = merge_data(buffer, info, page_no)
-        prev_c = c
-    if buffer:
-        res.append(buffer)
-    return res
-
-def extract_statement(data):
-    data = cleanup_statement_info(data)
-    categories = {
-        'income_statement': template_income_sys,
-        'balance_sheet': template_balance_sys,
-        'cash_flow': template_cash_sys
-    }
-    res = []
-    for d in data:
-        c = d.get('category')
-        buffer = single_prompt_answer(
-            categories[c],
-            template_user.substitute(text=d.get('text'), tables=d.get('tables'))
+        usr_prompt = template_user.substitute(
+            text=info.get('text'), tables=info.get('tables')
         )
-        if buffer is None:
-            logger.warning(f'ai prompt return nothing')
-            continue
-        buffer_ = json.loads(buffer)
-        buffer = { 'category': c, 'source': d.get('source') }
-        buffer.update(buffer_)
-        res.append(buffer)
-    return res
+        category = single_prompt_answer(template_sys, usr_prompt) or ''
+        info['category'] = json.loads(category)
+    return data
+
+name_sys = """
+You are analyzing a section from a company's annual report.
+
+Your task is to find the company name in this report
+
+Only Return the company name
+if NO company name is found Return empty string
+Do NOT return explanations.
+"""
+
+def extract_company_name(text) -> str:
+    return single_prompt_answer(name_sys, text) or ''
+
+name_sys = """
+Your task is to find the company name the user is referring to in this request
+
+Only Return the company name
+if NO company name is found Return empty string
+Do NOT return explanations.
+"""
+
+def extract_company_name_user_prompt(text) -> str:
+    return single_prompt_answer(name_sys, text) or ''

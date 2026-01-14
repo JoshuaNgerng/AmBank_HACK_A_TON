@@ -22,7 +22,7 @@ export default function FinancialAnalysisApp() {
 */
   const API_CONFIG = {
   chatEndpoint: 'https://your-api.azurewebsites.net/api/chat',
-  uploadEndpoint: 'https://your-api.azurewebsites.net/api/upload',
+  uploadEndpoint: 'http://localhost:8000/api/data/annual_report',
   newsEndpoint: 'https://your-api.azurewebsites.net/api/news', // ← Add your news API
   marketDataEndpoint: 'https://your-api.azurewebsites.net/api/market-data', // For indices
   commoditiesEndpoint: 'https://your-api.azurewebsites.net/api/commodities', // For commodities
@@ -161,9 +161,9 @@ export default function FinancialAnalysisApp() {
 
       const response = await fetch(API_CONFIG.uploadEndpoint, {
         method: 'POST',
-        headers: {
-          ...(API_CONFIG.apiKey && { 'Authorization': `Bearer ${API_CONFIG.apiKey}` })
-        },
+        // headers: {
+        //   ...(API_CONFIG.apiKey && { 'Authorization': `Bearer ${API_CONFIG.apiKey}` })
+        // },
         body: formData
       });
 

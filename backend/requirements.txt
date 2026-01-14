@@ -31,3 +31,4 @@ PyMuPDF==1.26.7
 openai==2.15.0
 azure-ai-documentintelligence==1.0.0b4
 azure-core==1.37.0
+RapidFuzz==3.14.3

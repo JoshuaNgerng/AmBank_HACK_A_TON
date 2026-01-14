@@ -7,8 +7,6 @@ from azure.ai.documentintelligence import DocumentIntelligenceClient
 from azure.ai.documentintelligence.models import AnalyzeResult, DocumentTable
 from azure.ai.documentintelligence.models import AnalyzeDocumentRequest
 
-from backend.app.main import settings
-
 client = DocumentIntelligenceClient(
     endpoint=settings.AZURE_DOC_URL,
     credential=AzureKeyCredential(settings.AZURE_DOC_KEY)

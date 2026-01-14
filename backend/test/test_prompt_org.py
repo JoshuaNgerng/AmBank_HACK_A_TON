@@ -2,16 +2,30 @@ from string import Template
 from unicodedata import category
 
 template_sys = """
-You are analyzing pages from a company's annual report.
+You are analyzing a section from a company's annual report.
 
-Classify this page as ONE of:
+Your task is to classify the content into exactly ONE of the following categories:
+
+FINANCIAL_STATEMENTS
 - income_statement
 - balance_sheet
-- cash_flow
-- notes
+- cash_flow_statement
+- financial_notes
+
+NARRATIVE_SECTIONS
+- management_discussion   (MD&A, business overview, operations)
+- strategy_and_outlook    (future plans, growth, expansion)
+- risk_factors            (risks, uncertainties, exposures)
+- corporate_governance    (board, directors, controls, compliance)
+- auditor_report          (independent auditor, opinion, assurance)
+
+OTHER
+- cover_or_front_matter
+- legal_or_boilerplate
 - other
 
 Return ONLY the category name.
+Do NOT return explanations.
 """
 
 template_user = Template(

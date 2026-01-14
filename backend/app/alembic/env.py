@@ -16,8 +16,8 @@ if config.config_file_name is not None:
 
 # add your model's MetaData object here
 # Import application models and configuration
-from app.models.base import Base
-from app.core.database import DATABASE_URL
+from models.base import Base
+from core.database import DATABASE_URL
 
 # Set sqlalchemy.url from application settings
 config.set_main_option("sqlalchemy.url", DATABASE_URL)

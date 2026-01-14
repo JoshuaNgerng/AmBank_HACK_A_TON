@@ -1,5 +1,6 @@
 import json
 import sys
+from venv import logger
 
 from openai import AzureOpenAI
 
@@ -17,6 +18,8 @@ client = AzureOpenAI(
 )
 
 def single_prompt_answer(sys_prompt: str, usr_prompt: str):
+    logger.info(f'sys prompt: {sys_prompt}')
+    logger.info(f'user prompt: {usr_prompt}')
     response = client.chat.completions.create(
         messages=[
             {
