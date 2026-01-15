@@ -194,6 +194,18 @@ docker-compose up --d
 
 ---
 
+## Additional sources
+
+- presentation deck
+https://www.canva.com/design/DAG-SKDQjb4/A1-OkNjE8pGxUHt6l6nsjw/view?utm_content=DAG-SKDQjb4&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h34477e93f8
+
+
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License.
+
+
+--- 
