@@ -1,0 +1,799 @@
+{
+  "res": {
+    "input_path": null,
+    "page_index": null,
+    "page_count": null,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+      "use_doc_preprocessor": true,
+      "use_seal_recognition": false,
+      "use_table_recognition": true,
+      "use_formula_recognition": false,
+      "use_chart_recognition": false,
+      "use_region_detection": true,
+      "format_block_content": false,
+      "markdown_ignore_labels": [
+        "number",
+        "footnote",
+        "header",
+        "header_image",
+        "footer",
+        "footer_image",
+        "aside_text"
+      ]
+    },
+    "parsing_res_list": [
+      {
+        "block_label": "image",
+        "block_content": "",
+        "block_bbox": [
+          446,
+          411,
+          567,
+          575
+        ],
+        "block_id": 0,
+        "block_order": null
+      },
+      {
+        "block_label": "text",
+        "block_content": "PSP GROUP ",
+        "block_bbox": [
+          587,
+          458,
+          746,
+          540
+        ],
+        "block_id": 1,
+        "block_order": 1
+      },
+      {
+        "block_label": "paragraph_title",
+        "block_content": "PSP ENERGY BERHAD ",
+        "block_bbox": [
+          437,
+          643,
+          749,
+          672
+        ],
+        "block_id": 2,
+        "block_order": 2
+      },
+      {
+        "block_label": "paragraph_title",
+        "block_content": "(Registration No. 202401029460 (1575308-T))(Incorporated in Malaysia)",
+        "block_bbox": [
+          410,
+          702,
+          777,
+          748
+        ],
+        "block_id": 3,
+        "block_order": 3
+      },
+      {
+        "block_label": "paragraph_title",
+        "block_content": "UNAUDITED INTERIM FINANCIAL REPORT ",
+        "block_bbox": [
+          387,
+          877,
+          799,
+          901
+        ],
+        "block_id": 4,
+        "block_order": 4
+      },
+      {
+        "block_label": "paragraph_title",
+        "block_content": "FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025",
+        "block_bbox": [
+          321,
+          956,
+          866,
+          981
+        ],
+        "block_id": 5,
+        "block_order": 5
+      },
+      {
+        "block_label": "footer",
+        "block_content": "Mercury Securities Sdn Bhd (\"Mercury Securities\"), being the Sponsor, is responsible for the admission of PSP Energy Berhad to the ACE Market of Bursa Malaysia Securities Berhad scheduled on 4 December 2025. Mercury Securities assumes no responsibility for the contents of the unaudited interim financial report for the first quarter ended 30 September 2025.\n",
+        "block_bbox": [
+          91,
+          1356,
+          1094,
+          1461
+        ],
+        "block_id": 6,
+        "block_order": null
+      },
+      {
+        "block_label": "number",
+        "block_content": "]",
+        "block_bbox": [
+          1077,
+          1565,
+          1089,
+          1584
+        ],
+        "block_id": 7,
+        "block_order": null
+      }
+    ],
+    "doc_preprocessor_res": {
+      "input_path": null,
+      "page_index": null,
+      "model_settings": {
+        "use_doc_orientation_classify": false,
+        "use_doc_unwarping": false
+      },
+      "angle": -1
+    },
+    "layout_det_res": {
+      "input_path": null,
+      "page_index": null,
+      "boxes": [
+        {
+          "cls_id": 14,
+          "label": "image",
+          "score": 0.7489269971847534,
+          "coordinate": [
+            446.50408935546875,
+            411.63604736328125,
+            567.3405151367188,
+            575.9732055664062
+          ]
+        },
+        {
+          "cls_id": 22,
+          "label": "text",
+          "score": 0.8494778275489807,
+          "coordinate": [
+            587.4417114257812,
+            458.50762939453125,
+            746.5344848632812,
+            540.8628540039062
+          ]
+        },
+        {
+          "cls_id": 17,
+          "label": "paragraph_title",
+          "score": 0.7233079075813293,
+          "coordinate": [
+            437.8184814453125,
+            643.7181396484375,
+            749.4990234375,
+            672.2996826171875
+          ]
+        },
+        {
+          "cls_id": 17,
+          "label": "paragraph_title",
+          "score": 0.7042002081871033,
+          "coordinate": [
+            410.91241455078125,
+            702.8485107421875,
+            777.1358032226562,
+            748.2528076171875
+          ]
+        },
+        {
+          "cls_id": 17,
+          "label": "paragraph_title",
+          "score": 0.9227579236030579,
+          "coordinate": [
+            387.1487731933594,
+            877.001953125,
+            799.7659912109375,
+            901.195068359375
+          ]
+        },
+        {
+          "cls_id": 17,
+          "label": "paragraph_title",
+          "score": 0.9118797779083252,
+          "coordinate": [
+            321.062255859375,
+            956.76513671875,
+            866.7666015625,
+            981.6767578125
+          ]
+        },
+        {
+          "cls_id": 8,
+          "label": "footer",
+          "score": 0.8817376494407654,
+          "coordinate": [
+            91.8502197265625,
+            1356.4051513671875,
+            1094.583251953125,
+            1461.1029052734375
+          ]
+        },
+        {
+          "cls_id": 16,
+          "label": "number",
+          "score": 0.8441160321235657,
+          "coordinate": [
+            1077.9227294921875,
+            1565.88134765625,
+            1089.7266845703125,
+            1584.59130859375
+          ]
+        }
+      ]
+    },
+    "overall_ocr_res": {
+      "input_path": null,
+      "page_index": null,
+      "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_textline_orientation": false
+      },
+      "dt_polys": [
+        [
+          [
+            586,
+            458
+          ],
+          [
+            747,
+            458
+          ],
+          [
+            747,
+            511
+          ],
+          [
+            586,
+            511
+          ]
+        ],
+        [
+          [
+            606,
+            512
+          ],
+          [
+            726,
+            512
+          ],
+          [
+            726,
+            540
+          ],
+          [
+            606,
+            540
+          ]
+        ],
+        [
+          [
+            441,
+            645
+          ],
+          [
+            746,
+            645
+          ],
+          [
+            746,
+            669
+          ],
+          [
+            441,
+            669
+          ]
+        ],
+        [
+          [
+            412,
+            704
+          ],
+          [
+            777,
+            704
+          ],
+          [
+            777,
+            728
+          ],
+          [
+            412,
+            728
+          ]
+        ],
+        [
+          [
+            493,
+            725
+          ],
+          [
+            700,
+            725
+          ],
+          [
+            700,
+            749
+          ],
+          [
+            493,
+            749
+          ]
+        ],
+        [
+          [
+            389,
+            877
+          ],
+          [
+            798,
+            876
+          ],
+          [
+            798,
+            900
+          ],
+          [
+            389,
+            901
+          ]
+        ],
+        [
+          [
+            323,
+            957
+          ],
+          [
+            865,
+            957
+          ],
+          [
+            865,
+            980
+          ],
+          [
+            323,
+            980
+          ]
+        ],
+        [
+          [
+            98,
+            1357
+          ],
+          [
+            1090,
+            1357
+          ],
+          [
+            1090,
+            1381
+          ],
+          [
+            98,
+            1381
+          ]
+        ],
+        [
+          [
+            98,
+            1382
+          ],
+          [
+            1090,
+            1384
+          ],
+          [
+            1090,
+            1408
+          ],
+          [
+            98,
+            1406
+          ]
+        ],
+        [
+          [
+            96,
+            1407
+          ],
+          [
+            1091,
+            1408
+          ],
+          [
+            1091,
+            1435
+          ],
+          [
+            96,
+            1434
+          ]
+        ],
+        [
+          [
+            96,
+            1437
+          ],
+          [
+            341,
+            1436
+          ],
+          [
+            341,
+            1460
+          ],
+          [
+            96,
+            1461
+          ]
+        ],
+        [
+          [
+            1080,
+            1570
+          ],
+          [
+            1087,
+            1570
+          ],
+          [
+            1087,
+            1582
+          ],
+          [
+            1080,
+            1582
+          ]
+        ]
+      ],
+      "text_det_params": {
+        "limit_side_len": 736,
+        "limit_type": "min",
+        "thresh": 0.3,
+        "max_side_limit": 4000,
+        "box_thresh": 0.6,
+        "unclip_ratio": 1.5
+      },
+      "text_type": "general",
+      "textline_orientation_angles": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "text_rec_score_thresh": 0.0,
+      "return_word_box": false,
+      "rec_texts": [
+        "PSP",
+        "GROUP",
+        "PSP ENERGY BERHAD",
+        "(Registration No. 202401029460 (1575308-T))",
+        "(Incorporated in Malaysia)",
+        "UNAUDITED INTERIM FINANCIAL REPORT",
+        "FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025",
+        "Mercury Securities Sdn Bhd (\"Mercury Securities\"), being the Sponsor, is responsible for the admission of PSP",
+        "Energy Berhad to the ACE Market of Bursa Malaysia Securities Berhad scheduled on 4 December 2025. Mercury",
+        "Securities assumes no responsibility for the contents of the unaudited interim financial report for the first quarter",
+        "ended 30 September 2025.",
+        "]"
+      ],
+      "rec_scores": [
+        0.999952495098114,
+        0.9999480247497559,
+        0.9993767738342285,
+        0.9916925430297852,
+        0.9679912328720093,
+        0.9913704991340637,
+        0.9931285381317139,
+        0.9821655750274658,
+        0.990446925163269,
+        0.9921326041221619,
+        0.9958751201629639,
+        0.9112355709075928
+      ],
+      "rec_polys": [
+        [
+          [
+            586,
+            458
+          ],
+          [
+            747,
+            458
+          ],
+          [
+            747,
+            511
+          ],
+          [
+            586,
+            511
+          ]
+        ],
+        [
+          [
+            606,
+            512
+          ],
+          [
+            726,
+            512
+          ],
+          [
+            726,
+            540
+          ],
+          [
+            606,
+            540
+          ]
+        ],
+        [
+          [
+            441,
+            645
+          ],
+          [
+            746,
+            645
+          ],
+          [
+            746,
+            669
+          ],
+          [
+            441,
+            669
+          ]
+        ],
+        [
+          [
+            412,
+            704
+          ],
+          [
+            777,
+            704
+          ],
+          [
+            777,
+            728
+          ],
+          [
+            412,
+            728
+          ]
+        ],
+        [
+          [
+            493,
+            725
+          ],
+          [
+            700,
+            725
+          ],
+          [
+            700,
+            749
+          ],
+          [
+            493,
+            749
+          ]
+        ],
+        [
+          [
+            389,
+            877
+          ],
+          [
+            798,
+            876
+          ],
+          [
+            798,
+            900
+          ],
+          [
+            389,
+            901
+          ]
+        ],
+        [
+          [
+            323,
+            957
+          ],
+          [
+            865,
+            957
+          ],
+          [
+            865,
+            980
+          ],
+          [
+            323,
+            980
+          ]
+        ],
+        [
+          [
+            98,
+            1357
+          ],
+          [
+            1090,
+            1357
+          ],
+          [
+            1090,
+            1381
+          ],
+          [
+            98,
+            1381
+          ]
+        ],
+        [
+          [
+            98,
+            1382
+          ],
+          [
+            1090,
+            1384
+          ],
+          [
+            1090,
+            1408
+          ],
+          [
+            98,
+            1406
+          ]
+        ],
+        [
+          [
+            96,
+            1407
+          ],
+          [
+            1091,
+            1408
+          ],
+          [
+            1091,
+            1435
+          ],
+          [
+            96,
+            1434
+          ]
+        ],
+        [
+          [
+            96,
+            1437
+          ],
+          [
+            341,
+            1436
+          ],
+          [
+            341,
+            1460
+          ],
+          [
+            96,
+            1461
+          ]
+        ],
+        [
+          [
+            1080,
+            1570
+          ],
+          [
+            1087,
+            1570
+          ],
+          [
+            1087,
+            1582
+          ],
+          [
+            1080,
+            1582
+          ]
+        ]
+      ],
+      "rec_boxes": [
+        [
+          586,
+          458,
+          747,
+          511
+        ],
+        [
+          606,
+          512,
+          726,
+          540
+        ],
+        [
+          441,
+          645,
+          746,
+          669
+        ],
+        [
+          412,
+          704,
+          777,
+          728
+        ],
+        [
+          493,
+          725,
+          700,
+          749
+        ],
+        [
+          389,
+          876,
+          798,
+          901
+        ],
+        [
+          323,
+          957,
+          865,
+          980
+        ],
+        [
+          98,
+          1357,
+          1090,
+          1381
+        ],
+        [
+          98,
+          1382,
+          1090,
+          1408
+        ],
+        [
+          96,
+          1407,
+          1091,
+          1435
+        ],
+        [
+          96,
+          1436,
+          341,
+          1461
+        ],
+        [
+          1080,
+          1570,
+          1087,
+          1582
+        ]
+      ]
+    }
+  }
+}

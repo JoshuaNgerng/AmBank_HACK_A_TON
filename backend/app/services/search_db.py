@@ -1,7 +1,7 @@
 from rapidfuzz import process, fuzz
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from models.report import ReportAnalysis
+from models.report import Company
 
 
 def normalize(text: str) -> str:
@@ -33,8 +33,8 @@ def find_closest_companies(
     while True:
         # Fetch next chunk
         companies = (
-            session.query(ReportAnalysis.id, ReportAnalysis.company_name)
-            .order_by(ReportAnalysis.id)
+            session.query(Company.id, Company.company_name)
+            .order_by(Company.id)
             .offset(offset)
             .limit(chunk_size)
             .all()

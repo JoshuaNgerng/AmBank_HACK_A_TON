@@ -1,0 +1,42 @@
+[
+  {
+    "type": "text",
+    "confidence": 0.6079193949699402,
+    "content": "UNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025"
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.6142783761024475,
+    "content": "UNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF FINANCIAL POSITION (CONT'D) (1)"
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.8852768540382385,
+    "content": "Notes:"
+  },
+  {
+    "type": "text",
+    "confidence": 0.9396535754203796,
+    "content": "*Represents RM100.00 only."
+  },
+  {
+    "type": "text",
+    "confidence": 0.9764838814735413,
+    "content": "(1)The basis of preparation of the unaudited condensed consolidated statements of financial position is detailed in Note A1 of this report. It should be read in conjunction with the Accountants' Report as set out in the Prospectus, as well as the accompanying explanatory notes attached to this report.\n"
+  },
+  {
+    "type": "text",
+    "confidence": 0.9758583307266235,
+    "content": "(2)The comparative figures as at 30 June 2025 were prepared on a combined basis whereby it is assumed that the Group has been operating as a single economic entity throughout the financial year ended 30 June 2025 since the combining entities were under common control throughout the financial year by virtue of common controlling shareholders."
+  },
+  {
+    "type": "text",
+    "confidence": 0.9744321703910828,
+    "content": "(3)Computed based on total equity divided by the Company's enlarged total number of 855,001,500 shares, adjusted retrospectively for the effect of the subdivision of every 1 share into 15 new subdivided shares, which was completed on 6 October 2025.\n"
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.6952610015869141,
+    "content": "[THE REST OF THIS PAGE IS INTENTIONALLY LEFT BLANK]"
+  }
+]

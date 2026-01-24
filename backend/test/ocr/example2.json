@@ -1,0 +1,707 @@
+{
+  "res": {
+    "input_path": null,
+    "page_index": null,
+    "page_count": null,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+      "use_doc_preprocessor": true,
+      "use_seal_recognition": false,
+      "use_table_recognition": true,
+      "use_formula_recognition": false,
+      "use_chart_recognition": false,
+      "use_region_detection": true,
+      "format_block_content": false,
+      "markdown_ignore_labels": [
+        "number",
+        "footnote",
+        "header",
+        "header_image",
+        "footer",
+        "footer_image",
+        "aside_text"
+      ]
+    },
+    "parsing_res_list": [
+      {
+        "block_label": "image",
+        "block_content": "",
+        "block_bbox": [
+          447,
+          408,
+          570,
+          576
+        ],
+        "block_id": 0,
+        "block_order": null
+      },
+      {
+        "block_label": "text",
+        "block_content": "PSP GROUP ",
+        "block_bbox": [
+          592,
+          457,
+          746,
+          538
+        ],
+        "block_id": 1,
+        "block_order": 1
+      },
+      {
+        "block_label": "paragraph_title",
+        "block_content": "PSP ENERGY BERHAD ",
+        "block_bbox": [
+          447,
+          645,
+          723,
+          667
+        ],
+        "block_id": 2,
+        "block_order": 2
+      },
+      {
+        "block_label": "text",
+        "block_content": "Mercury Securities Sdn Bhd (\"Mercury Securities\"), being the Sponsor, is responsible for the admission of PSP Energy Berhad to the ACE Market of Bursa Malaysia Securities Berhad scheduled on 4 December 2025. Mercury Securities assumes no responsibility for the contents of the unaudited interim financial report for the first quarter ended 30 September 2025.\n",
+        "block_bbox": [
+          87,
+          1355,
+          1096,
+          1459
+        ],
+        "block_id": 3,
+        "block_order": 3
+      }
+    ],
+    "doc_preprocessor_res": {
+      "input_path": null,
+      "page_index": null,
+      "model_settings": {
+        "use_doc_orientation_classify": false,
+        "use_doc_unwarping": false
+      },
+      "angle": -1
+    },
+    "layout_det_res": {
+      "input_path": null,
+      "page_index": null,
+      "boxes": [
+        {
+          "cls_id": 2,
+          "label": "text",
+          "score": 0.5333144068717957,
+          "coordinate": [
+            87.94992065429688,
+            1355.112060546875,
+            1096.101806640625,
+            1459.450439453125
+          ]
+        },
+        {
+          "cls_id": 1,
+          "label": "image",
+          "score": 0.5327267646789551,
+          "coordinate": [
+            447.44610595703125,
+            408.10284423828125,
+            570.9765014648438,
+            576.6926879882812
+          ]
+        },
+        {
+          "cls_id": 2,
+          "label": "text",
+          "score": 0.4219851791858673,
+          "coordinate": [
+            592.3861083984375,
+            457.742431640625,
+            746.2176513671875,
+            538.7637939453125
+          ]
+        },
+        {
+          "cls_id": 0,
+          "label": "paragraph_title",
+          "score": 0.3239207863807678,
+          "coordinate": [
+            447.80230712890625,
+            645.0325927734375,
+            723.3174438476562,
+            667.2012939453125
+          ]
+        }
+      ]
+    },
+    "overall_ocr_res": {
+      "input_path": null,
+      "page_index": null,
+      "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_textline_orientation": false
+      },
+      "dt_polys": [
+        [
+          [
+            581,
+            452
+          ],
+          [
+            751,
+            452
+          ],
+          [
+            751,
+            513
+          ],
+          [
+            581,
+            513
+          ]
+        ],
+        [
+          [
+            604,
+            510
+          ],
+          [
+            727,
+            510
+          ],
+          [
+            727,
+            541
+          ],
+          [
+            604,
+            541
+          ]
+        ],
+        [
+          [
+            438,
+            641
+          ],
+          [
+            749,
+            641
+          ],
+          [
+            749,
+            671
+          ],
+          [
+            438,
+            671
+          ]
+        ],
+        [
+          [
+            412,
+            703
+          ],
+          [
+            777,
+            703
+          ],
+          [
+            777,
+            726
+          ],
+          [
+            412,
+            726
+          ]
+        ],
+        [
+          [
+            494,
+            725
+          ],
+          [
+            699,
+            725
+          ],
+          [
+            699,
+            745
+          ],
+          [
+            494,
+            745
+          ]
+        ],
+        [
+          [
+            389,
+            878
+          ],
+          [
+            798,
+            878
+          ],
+          [
+            798,
+            898
+          ],
+          [
+            389,
+            898
+          ]
+        ],
+        [
+          [
+            322,
+            956
+          ],
+          [
+            864,
+            957
+          ],
+          [
+            864,
+            978
+          ],
+          [
+            322,
+            977
+          ]
+        ],
+        [
+          [
+            95,
+            1356
+          ],
+          [
+            1090,
+            1356
+          ],
+          [
+            1090,
+            1379
+          ],
+          [
+            95,
+            1379
+          ]
+        ],
+        [
+          [
+            96,
+            1382
+          ],
+          [
+            1089,
+            1382
+          ],
+          [
+            1089,
+            1405
+          ],
+          [
+            96,
+            1405
+          ]
+        ],
+        [
+          [
+            95,
+            1408
+          ],
+          [
+            1091,
+            1409
+          ],
+          [
+            1091,
+            1432
+          ],
+          [
+            95,
+            1431
+          ]
+        ],
+        [
+          [
+            97,
+            1437
+          ],
+          [
+            341,
+            1437
+          ],
+          [
+            341,
+            1458
+          ],
+          [
+            97,
+            1458
+          ]
+        ],
+        [
+          [
+            1075,
+            1564
+          ],
+          [
+            1091,
+            1564
+          ],
+          [
+            1091,
+            1584
+          ],
+          [
+            1075,
+            1584
+          ]
+        ]
+      ],
+      "text_det_params": {
+        "limit_side_len": 736,
+        "limit_type": "min",
+        "thresh": 0.3,
+        "max_side_limit": 4000,
+        "box_thresh": 0.6,
+        "unclip_ratio": 1.5
+      },
+      "text_type": "general",
+      "textline_orientation_angles": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "text_rec_score_thresh": 0.0,
+      "return_word_box": false,
+      "rec_texts": [
+        "PSP",
+        "GROUP",
+        "PSP ENERGY BERHAD",
+        "(Registration No. 202401029460 (1575308-T))",
+        "(Incorporated in Malaysia)",
+        "UNAUDITED INTERIM FINANCIAL REPORT",
+        "FOR THEFIRST QUARTER ENDED 3O SEPTEMBER 2O25",
+        "Mercury Securities Sdn Bhd (\"Mercury Securities\"), being the Sponsor, is responsible for the admission of PSP",
+        "Energy Berhad to the ACE Market of Bursa Malaysia Securities Berhad scheduled on 4 December 2025. Mercury",
+        "Securities assumes no responsibility for the contents of the unaudited interim financial report for the first quarter",
+        "ended 30 September 2025.",
+        "1"
+      ],
+      "rec_scores": [
+        0.9379975199699402,
+        0.9868771433830261,
+        0.9670606255531311,
+        0.959054708480835,
+        0.9854950308799744,
+        0.9796473383903503,
+        0.9432714581489563,
+        0.9746269583702087,
+        0.9589090943336487,
+        0.978869616985321,
+        0.9499306678771973,
+        0.9986287355422974
+      ],
+      "rec_polys": [
+        [
+          [
+            581,
+            452
+          ],
+          [
+            751,
+            452
+          ],
+          [
+            751,
+            513
+          ],
+          [
+            581,
+            513
+          ]
+        ],
+        [
+          [
+            604,
+            510
+          ],
+          [
+            727,
+            510
+          ],
+          [
+            727,
+            541
+          ],
+          [
+            604,
+            541
+          ]
+        ],
+        [
+          [
+            438,
+            641
+          ],
+          [
+            749,
+            641
+          ],
+          [
+            749,
+            671
+          ],
+          [
+            438,
+            671
+          ]
+        ],
+        [
+          [
+            412,
+            703
+          ],
+          [
+            777,
+            703
+          ],
+          [
+            777,
+            726
+          ],
+          [
+            412,
+            726
+          ]
+        ],
+        [
+          [
+            494,
+            725
+          ],
+          [
+            699,
+            725
+          ],
+          [
+            699,
+            745
+          ],
+          [
+            494,
+            745
+          ]
+        ],
+        [
+          [
+            389,
+            878
+          ],
+          [
+            798,
+            878
+          ],
+          [
+            798,
+            898
+          ],
+          [
+            389,
+            898
+          ]
+        ],
+        [
+          [
+            322,
+            956
+          ],
+          [
+            864,
+            957
+          ],
+          [
+            864,
+            978
+          ],
+          [
+            322,
+            977
+          ]
+        ],
+        [
+          [
+            95,
+            1356
+          ],
+          [
+            1090,
+            1356
+          ],
+          [
+            1090,
+            1379
+          ],
+          [
+            95,
+            1379
+          ]
+        ],
+        [
+          [
+            96,
+            1382
+          ],
+          [
+            1089,
+            1382
+          ],
+          [
+            1089,
+            1405
+          ],
+          [
+            96,
+            1405
+          ]
+        ],
+        [
+          [
+            95,
+            1408
+          ],
+          [
+            1091,
+            1409
+          ],
+          [
+            1091,
+            1432
+          ],
+          [
+            95,
+            1431
+          ]
+        ],
+        [
+          [
+            97,
+            1437
+          ],
+          [
+            341,
+            1437
+          ],
+          [
+            341,
+            1458
+          ],
+          [
+            97,
+            1458
+          ]
+        ],
+        [
+          [
+            1075,
+            1564
+          ],
+          [
+            1091,
+            1564
+          ],
+          [
+            1091,
+            1584
+          ],
+          [
+            1075,
+            1584
+          ]
+        ]
+      ],
+      "rec_boxes": [
+        [
+          581,
+          452,
+          751,
+          513
+        ],
+        [
+          604,
+          510,
+          727,
+          541
+        ],
+        [
+          438,
+          641,
+          749,
+          671
+        ],
+        [
+          412,
+          703,
+          777,
+          726
+        ],
+        [
+          494,
+          725,
+          699,
+          745
+        ],
+        [
+          389,
+          878,
+          798,
+          898
+        ],
+        [
+          322,
+          956,
+          864,
+          978
+        ],
+        [
+          95,
+          1356,
+          1090,
+          1379
+        ],
+        [
+          96,
+          1382,
+          1089,
+          1405
+        ],
+        [
+          95,
+          1408,
+          1091,
+          1432
+        ],
+        [
+          97,
+          1437,
+          341,
+          1458
+        ],
+        [
+          1075,
+          1564,
+          1091,
+          1584
+        ]
+      ]
+    }
+  }
+}

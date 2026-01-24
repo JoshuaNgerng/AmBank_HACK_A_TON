@@ -2,7 +2,7 @@ import json
 from copy import deepcopy
 from string import Template
 from venv import logger
-from services.azure_ai import single_prompt_answer
+from services.ai_prompt import single_prompt_answer
 
 template_income_sys = """
 You are analyzing the income statement from a company's annual report.

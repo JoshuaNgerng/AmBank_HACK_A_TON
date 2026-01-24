@@ -1,0 +1,911 @@
+{
+  "res": {
+    "input_path": null,
+    "page_index": null,
+    "page_count": null,
+    "width": 1191,
+    "height": 1684,
+    "model_settings": {
+      "use_doc_preprocessor": true,
+      "use_seal_recognition": false,
+      "use_table_recognition": true,
+      "use_formula_recognition": false,
+      "use_chart_recognition": false,
+      "use_region_detection": true,
+      "format_block_content": false,
+      "markdown_ignore_labels": [
+        "number",
+        "footnote",
+        "header",
+        "header_image",
+        "footer",
+        "footer_image",
+        "aside_text"
+      ]
+    },
+    "parsing_res_list": [
+      {
+        "block_label": "header_image",
+        "block_content": "PSP GROUP ",
+        "block_bbox": [
+          524,
+          69,
+          683,
+          155
+        ],
+        "block_id": 0,
+        "block_order": null
+      },
+      {
+        "block_label": "text",
+        "block_content": "PSP ENERGY BERHAD \n(Registration No. 202401029460 (1575308-T))\n(Incorporated in Malaysia under the Companies Act 2016)\n",
+        "block_bbox": [
+          354,
+          163,
+          832,
+          238
+        ],
+        "block_id": 1,
+        "block_order": 1
+      },
+      {
+        "block_label": "text",
+        "block_content": "UNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025",
+        "block_bbox": [
+          115,
+          257,
+          1070,
+          283
+        ],
+        "block_id": 2,
+        "block_order": 2
+      },
+      {
+        "block_label": "text",
+        "block_content": "(3)Basic EPS is calculated based on the Company's number of ordinary shares of 855,001,500 shares, adjusted retrospectively for the effect of the subdivision of every 1 share into 15 new subdivided shares, which was completed on 6 October 2025, and before the issuance of 213,800,000 new ordinary shares pursuant to the Company's IPO.",
+        "block_bbox": [
+          94,
+          356,
+          1092,
+          430
+        ],
+        "block_id": 3,
+        "block_order": 3
+      },
+      {
+        "block_label": "text",
+        "block_content": "(4)The basic EPS is equivalent to diluted EPS as the Company does not have any equity-dilutive instruments in issue as at the end of the respective financial periods.\n",
+        "block_bbox": [
+          94,
+          452,
+          1091,
+          501
+        ],
+        "block_id": 4,
+        "block_order": 4
+      },
+      {
+        "block_label": "text",
+        "block_content": "[THE REST OF THIS PAGE IS INTENTIONALLY LEFT BLANK]",
+        "block_bbox": [
+          310,
+          578,
+          873,
+          604
+        ],
+        "block_id": 5,
+        "block_order": 5
+      },
+      {
+        "block_label": "number",
+        "block_content": "3",
+        "block_bbox": [
+          1076,
+          1564,
+          1090,
+          1585
+        ],
+        "block_id": 6,
+        "block_order": null
+      }
+    ],
+    "doc_preprocessor_res": {
+      "input_path": null,
+      "page_index": null,
+      "model_settings": {
+        "use_doc_orientation_classify": false,
+        "use_doc_unwarping": false
+      },
+      "angle": -1
+    },
+    "layout_det_res": {
+      "input_path": null,
+      "page_index": null,
+      "boxes": [
+        {
+          "cls_id": 13,
+          "label": "header_image",
+          "score": 0.9360885620117188,
+          "coordinate": [
+            524.9238891601562,
+            69.65144348144531,
+            683.0802612304688,
+            155.6585235595703
+          ]
+        },
+        {
+          "cls_id": 22,
+          "label": "text",
+          "score": 0.5093808770179749,
+          "coordinate": [
+            354.8006591796875,
+            163.37704467773438,
+            832.421875,
+            238.85104370117188
+          ]
+        },
+        {
+          "cls_id": 22,
+          "label": "text",
+          "score": 0.7785106301307678,
+          "coordinate": [
+            115.37704467773438,
+            257.25250244140625,
+            1070.117919921875,
+            283.69305419921875
+          ]
+        },
+        {
+          "cls_id": 22,
+          "label": "text",
+          "score": 0.9732019901275635,
+          "coordinate": [
+            94.7698974609375,
+            356.1351318359375,
+            1092.3092041015625,
+            430.5146484375
+          ]
+        },
+        {
+          "cls_id": 22,
+          "label": "text",
+          "score": 0.9619188904762268,
+          "coordinate": [
+            94.10293579101562,
+            452.8494873046875,
+            1091.5711669921875,
+            501.82659912109375
+          ]
+        },
+        {
+          "cls_id": 22,
+          "label": "text",
+          "score": 0.5708698630332947,
+          "coordinate": [
+            310.669921875,
+            578.571044921875,
+            873.868408203125,
+            604.119140625
+          ]
+        },
+        {
+          "cls_id": 16,
+          "label": "number",
+          "score": 0.8659808039665222,
+          "coordinate": [
+            1076.879638671875,
+            1564.8614501953125,
+            1090.248291015625,
+            1585.4371337890625
+          ]
+        }
+      ]
+    },
+    "overall_ocr_res": {
+      "input_path": null,
+      "page_index": null,
+      "model_settings": {
+        "use_doc_preprocessor": false,
+        "use_textline_orientation": false
+      },
+      "dt_polys": [
+        [
+          [
+            597,
+            93
+          ],
+          [
+            685,
+            93
+          ],
+          [
+            685,
+            125
+          ],
+          [
+            597,
+            125
+          ]
+        ],
+        [
+          [
+            606,
+            122
+          ],
+          [
+            672,
+            122
+          ],
+          [
+            672,
+            143
+          ],
+          [
+            606,
+            143
+          ]
+        ],
+        [
+          [
+            470,
+            164
+          ],
+          [
+            734,
+            164
+          ],
+          [
+            734,
+            187
+          ],
+          [
+            470,
+            187
+          ]
+        ],
+        [
+          [
+            403,
+            192
+          ],
+          [
+            785,
+            192
+          ],
+          [
+            785,
+            214
+          ],
+          [
+            403,
+            214
+          ]
+        ],
+        [
+          [
+            357,
+            214
+          ],
+          [
+            830,
+            214
+          ],
+          [
+            830,
+            237
+          ],
+          [
+            357,
+            237
+          ]
+        ],
+        [
+          [
+            118,
+            260
+          ],
+          [
+            1068,
+            259
+          ],
+          [
+            1068,
+            280
+          ],
+          [
+            118,
+            281
+          ]
+        ],
+        [
+          [
+            97,
+            356
+          ],
+          [
+            128,
+            356
+          ],
+          [
+            128,
+            382
+          ],
+          [
+            97,
+            382
+          ]
+        ],
+        [
+          [
+            153,
+            358
+          ],
+          [
+            1091,
+            358
+          ],
+          [
+            1091,
+            381
+          ],
+          [
+            153,
+            381
+          ]
+        ],
+        [
+          [
+            152,
+            382
+          ],
+          [
+            1090,
+            380
+          ],
+          [
+            1090,
+            403
+          ],
+          [
+            152,
+            405
+          ]
+        ],
+        [
+          [
+            154,
+            405
+          ],
+          [
+            1056,
+            405
+          ],
+          [
+            1056,
+            428
+          ],
+          [
+            154,
+            428
+          ]
+        ],
+        [
+          [
+            95,
+            454
+          ],
+          [
+            127,
+            454
+          ],
+          [
+            127,
+            480
+          ],
+          [
+            95,
+            480
+          ]
+        ],
+        [
+          [
+            152,
+            454
+          ],
+          [
+            1090,
+            455
+          ],
+          [
+            1090,
+            478
+          ],
+          [
+            152,
+            477
+          ]
+        ],
+        [
+          [
+            152,
+            478
+          ],
+          [
+            515,
+            477
+          ],
+          [
+            515,
+            500
+          ],
+          [
+            152,
+            501
+          ]
+        ],
+        [
+          [
+            312,
+            579
+          ],
+          [
+            874,
+            580
+          ],
+          [
+            874,
+            604
+          ],
+          [
+            312,
+            603
+          ]
+        ],
+        [
+          [
+            1077,
+            1566
+          ],
+          [
+            1090,
+            1566
+          ],
+          [
+            1090,
+            1585
+          ],
+          [
+            1077,
+            1585
+          ]
+        ]
+      ],
+      "text_det_params": {
+        "limit_side_len": 736,
+        "limit_type": "min",
+        "thresh": 0.3,
+        "max_side_limit": 4000,
+        "box_thresh": 0.6,
+        "unclip_ratio": 1.5
+      },
+      "text_type": "general",
+      "textline_orientation_angles": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        -1
+      ],
+      "text_rec_score_thresh": 0.0,
+      "return_word_box": false,
+      "rec_texts": [
+        "PSP",
+        "GROUP",
+        "PSP ENERGY BERHAD",
+        "(Registration No. 202401029460 (1575308-T))",
+        "(Incorporated in Malaysia under the Companies Act 2016)",
+        "UNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025",
+        "(3)",
+        "Basic EPS is calculated based on the Company's number of ordinary shares of 855,001,500 shares, adjusted",
+        "retrospectively for the effect of the subdivision of every 1 share into 15 new subdivided shares, which was completed",
+        "on 6 October 2025, and before the issuance of 213,800,000 new ordinary shares pursuant to the Company's IPO.",
+        "(4)",
+        "The basic EPS is equivalent to diluted EPS as the Company does not have any equity-dilutive instruments in issue as",
+        "at the end of the respective financial periods.",
+        "[THE REST OF THIS PAGE IS INTENTIONALLY LEFT BLANK]",
+        "3"
+      ],
+      "rec_scores": [
+        0.9999697804450989,
+        0.999686598777771,
+        0.9982013702392578,
+        0.9832342267036438,
+        0.9848663806915283,
+        0.9838994741439819,
+        0.9998375773429871,
+        0.9832122325897217,
+        0.9890024065971375,
+        0.992298424243927,
+        0.999862015247345,
+        0.9871042370796204,
+        0.9947928786277771,
+        0.9926899075508118,
+        0.9999611377716064
+      ],
+      "rec_polys": [
+        [
+          [
+            597,
+            93
+          ],
+          [
+            685,
+            93
+          ],
+          [
+            685,
+            125
+          ],
+          [
+            597,
+            125
+          ]
+        ],
+        [
+          [
+            606,
+            122
+          ],
+          [
+            672,
+            122
+          ],
+          [
+            672,
+            143
+          ],
+          [
+            606,
+            143
+          ]
+        ],
+        [
+          [
+            470,
+            164
+          ],
+          [
+            734,
+            164
+          ],
+          [
+            734,
+            187
+          ],
+          [
+            470,
+            187
+          ]
+        ],
+        [
+          [
+            403,
+            192
+          ],
+          [
+            785,
+            192
+          ],
+          [
+            785,
+            214
+          ],
+          [
+            403,
+            214
+          ]
+        ],
+        [
+          [
+            357,
+            214
+          ],
+          [
+            830,
+            214
+          ],
+          [
+            830,
+            237
+          ],
+          [
+            357,
+            237
+          ]
+        ],
+        [
+          [
+            118,
+            260
+          ],
+          [
+            1068,
+            259
+          ],
+          [
+            1068,
+            280
+          ],
+          [
+            118,
+            281
+          ]
+        ],
+        [
+          [
+            97,
+            356
+          ],
+          [
+            128,
+            356
+          ],
+          [
+            128,
+            382
+          ],
+          [
+            97,
+            382
+          ]
+        ],
+        [
+          [
+            153,
+            358
+          ],
+          [
+            1091,
+            358
+          ],
+          [
+            1091,
+            381
+          ],
+          [
+            153,
+            381
+          ]
+        ],
+        [
+          [
+            152,
+            382
+          ],
+          [
+            1090,
+            380
+          ],
+          [
+            1090,
+            403
+          ],
+          [
+            152,
+            405
+          ]
+        ],
+        [
+          [
+            154,
+            405
+          ],
+          [
+            1056,
+            405
+          ],
+          [
+            1056,
+            428
+          ],
+          [
+            154,
+            428
+          ]
+        ],
+        [
+          [
+            95,
+            454
+          ],
+          [
+            127,
+            454
+          ],
+          [
+            127,
+            480
+          ],
+          [
+            95,
+            480
+          ]
+        ],
+        [
+          [
+            152,
+            454
+          ],
+          [
+            1090,
+            455
+          ],
+          [
+            1090,
+            478
+          ],
+          [
+            152,
+            477
+          ]
+        ],
+        [
+          [
+            152,
+            478
+          ],
+          [
+            515,
+            477
+          ],
+          [
+            515,
+            500
+          ],
+          [
+            152,
+            501
+          ]
+        ],
+        [
+          [
+            312,
+            579
+          ],
+          [
+            874,
+            580
+          ],
+          [
+            874,
+            604
+          ],
+          [
+            312,
+            603
+          ]
+        ],
+        [
+          [
+            1077,
+            1566
+          ],
+          [
+            1090,
+            1566
+          ],
+          [
+            1090,
+            1585
+          ],
+          [
+            1077,
+            1585
+          ]
+        ]
+      ],
+      "rec_boxes": [
+        [
+          597,
+          93,
+          685,
+          125
+        ],
+        [
+          606,
+          122,
+          672,
+          143
+        ],
+        [
+          470,
+          164,
+          734,
+          187
+        ],
+        [
+          403,
+          192,
+          785,
+          214
+        ],
+        [
+          357,
+          214,
+          830,
+          237
+        ],
+        [
+          118,
+          259,
+          1068,
+          281
+        ],
+        [
+          97,
+          356,
+          128,
+          382
+        ],
+        [
+          153,
+          358,
+          1091,
+          381
+        ],
+        [
+          152,
+          380,
+          1090,
+          405
+        ],
+        [
+          154,
+          405,
+          1056,
+          428
+        ],
+        [
+          95,
+          454,
+          127,
+          480
+        ],
+        [
+          152,
+          454,
+          1090,
+          478
+        ],
+        [
+          152,
+          477,
+          515,
+          501
+        ],
+        [
+          312,
+          579,
+          874,
+          604
+        ],
+        [
+          1077,
+          1566,
+          1090,
+          1585
+        ]
+      ]
+    }
+  }
+}

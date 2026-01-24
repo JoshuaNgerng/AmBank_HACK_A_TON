@@ -1,0 +1,22 @@
+[
+  {
+    "type": "doc_title",
+    "confidence": 0.6798287630081177,
+    "content": "PSP ENERGY BERHAD "
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.9312009215354919,
+    "content": "UNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025"
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.9344258308410645,
+    "content": "UNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF FINANCIAL POSITION (1)"
+  },
+  {
+    "type": "table",
+    "confidence": 0.9752052426338196,
+    "content": "<html><body><table><tr><td>Note</td><td>UNAUDITED 30.09.2025 RM'000</td><td>AUDITED 30.06.2025(2) RM'000</td></tr><tr><td>ASSETS</td><td></td><td></td></tr><tr><td>Non-Current Assets</td><td></td><td></td></tr><tr><td>Property, plant and equipment</td><td>14,528</td><td>14,948</td></tr><tr><td>Right-of-use assets</td><td>11,319</td><td>11,535</td></tr><tr><td>Investment properties</td><td>17,152</td><td>17,192</td></tr><tr><td>Other investments</td><td>84</td><td>84</td></tr><tr><td>Trade and other receivables</td><td>1,567</td><td>1,567</td></tr><tr><td></td><td>44,650</td><td>45,326</td></tr><tr><td>Current Assets</td><td></td><td></td></tr><tr><td>Inventories</td><td>9,290</td><td>7,003</td></tr><tr><td>Current tax assets</td><td></td><td>20</td></tr><tr><td>Trade and other receivables</td><td>75,827</td><td>76,163</td></tr><tr><td>Cash and short-term deposits</td><td>129,301</td><td>119,258</td></tr><tr><td>Non-current asset held for sale</td><td>214,418</td><td>202,444</td></tr><tr><td></td><td>6,480</td><td>6,480</td></tr><tr><td>TOTAL ASSETS</td><td>220,898</td><td>208,924</td></tr><tr><td></td><td>265,548</td><td>254,250</td></tr><tr><td>EQUITY AND LIABILITIES</td><td></td><td></td></tr><tr><td>EQUITY</td><td></td><td></td></tr><tr><td>Shares capital</td><td>57,000</td><td>*</td></tr><tr><td>Invested equity</td><td></td><td>7,500</td></tr><tr><td>Reorganisation reserve</td><td>(49,500)</td><td>-</td></tr><tr><td>Retained earnings</td><td>67,074</td><td>63,021</td></tr><tr><td>TOTAL EQUITY</td><td>74,574</td><td>70,521</td></tr><tr><td></td><td></td><td></td></tr><tr><td>LIABILITIES</td><td></td><td></td></tr><tr><td>Non-Current Liabilities</td><td></td><td></td></tr><tr><td>Loans and borrowings</td><td>B9 25,044</td><td>25,943</td></tr><tr><td>Deferred tax liabilities</td><td>1,544</td><td>1,544</td></tr><tr><td></td><td>26,588</td><td>27,487</td></tr><tr><td>Current Liabilities</td><td></td><td></td></tr><tr><td>Loans and borrowings</td><td></td><td></td></tr><tr><td></td><td>B9 93,624</td><td>86,016</td></tr><tr><td>Trade and other payables</td><td>68,444</td><td>67,849</td></tr><tr><td>Current tax liabilities</td><td>2,318</td><td>2,377</td></tr><tr><td></td><td>164,386</td><td>156,242</td></tr><tr><td>TOTAL LIABILITIES</td><td>190,974</td><td>183,729</td></tr><tr><td>TOTAL EQUITY AND LIABILITIES</td><td>265,548</td><td>254,250</td></tr><tr><td></td><td></td><td></td></tr><tr><td>Net assets per share attributable to owners of the Company (RM) (3)</td><td>0.09</td><td>0.08</td></tr></table></body></html>"
+  }
+]

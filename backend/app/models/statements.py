@@ -3,7 +3,7 @@ from typing import Any, TYPE_CHECKING
 from sqlalchemy import Integer, Float, String, Numeric, JSON, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from models.base import TableBase
-from models.report import ReportAnalysis
+from models.report import ReportingPeriod
 
 class IncomeStatement(TableBase):
     __tablename__ = "income_statements"
@@ -27,12 +27,12 @@ class IncomeStatement(TableBase):
 
     sources: Mapped[Any] = mapped_column(JSON, nullable=True)
 
-    report_analysis_id: Mapped[int] = mapped_column(
-        ForeignKey("report_analysis.id"),
+    reporting_period_id: Mapped[int] = mapped_column(
+        ForeignKey("reporting_period.id"),
         unique=True   # enforces one-to-one in DB
     )
 
-    report_analysis: Mapped["ReportAnalysis"] = relationship(
+    reporting_period: Mapped["ReportingPeriod"] = relationship(
         back_populates="income_statement"
     )
 
@@ -67,12 +67,12 @@ class BalanceSheet(TableBase):
 
     sources: Mapped[Any] = mapped_column(JSON, nullable=True)
 
-    report_analysis_id: Mapped[int] = mapped_column(
-        ForeignKey("report_analysis.id"),
+    reporting_period_id: Mapped[int] = mapped_column(
+        ForeignKey("reporting_period.id"),
         unique=True
     )
 
-    report_analysis: Mapped["ReportAnalysis"] = relationship(
+    reporting_period: Mapped["ReportingPeriod"] = relationship(
         back_populates="balance_sheet"
     )
 
@@ -103,11 +103,11 @@ class CashFlowStatement(TableBase):
 
     sources: Mapped[Any] = mapped_column(JSON, nullable=True)
 
-    report_analysis_id: Mapped[int] = mapped_column(
-        ForeignKey("report_analysis.id"),
+    reporting_period_id: Mapped[int] = mapped_column(
+        ForeignKey("reporting_period.id"),
         unique=True
     )
 
-    report_analysis: Mapped["ReportAnalysis"] = relationship(
+    reporting_period: Mapped["ReportingPeriod"] = relationship(
         back_populates="cash_flow"
     )

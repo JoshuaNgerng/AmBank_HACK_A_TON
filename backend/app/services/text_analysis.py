@@ -2,7 +2,7 @@ import json
 from copy import deepcopy
 from functools import lru_cache
 from venv import logger
-from services.azure_ai import single_prompt_answer
+from services.ai_prompt import single_prompt_answer
 
 sys_prompt_business_strategy = """
 You are a corporate strategy analyst.

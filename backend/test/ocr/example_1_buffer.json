@@ -1,0 +1,52 @@
+[
+  {
+    "type": "doc_title",
+    "confidence": 0.8103822469711304,
+    "content": "PSP ENERGY BERHAD "
+  },
+  {
+    "type": "text",
+    "confidence": 0.6910754442214966,
+    "content": "(Registration No. 202401029460 (1575308-T))"
+  },
+  {
+    "type": "text",
+    "confidence": 0.7349154949188232,
+    "content": "(Incorporated in Malaysia under the Companies Act 2016)"
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.8707795739173889,
+    "content": "UNAUDITED INTERIM FINANCIAL REPORT FOR THE FIRST QUARTER ENDED 30 SEPTEMBER 2025"
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.7851576805114746,
+    "content": "UNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF PROFIT OR LOSS AND OTHER COMPREHENSIVE INCOME (1)\n"
+  },
+  {
+    "type": "table",
+    "confidence": 0.9867276549339294,
+    "content": "<html><body><table><tr><td colspan=\"3\">INDIVIDUAL QUARTER</td><td colspan=\"2\">CUMULATIVE QUARTER</td></tr><tr><td></td><td></td><td>30.09.2025 (2) 30.09.2024</td><td>30.09.2025</td><td>(2) 30.09.2024</td></tr><tr><td></td><td>Note</td><td>RM'000</td><td>RM'000</td><td>RM'000 RM'000</td></tr><tr><td>Revenue</td><td>A10</td><td>213,593</td><td>N/A 213,593</td><td>N/A</td></tr><tr><td>Cost of sales</td><td></td><td>(204,086)</td><td>N/A (204,086)</td><td>N/A</td></tr><tr><td>Gross profit</td><td></td><td>9,507</td><td>N/A 9,507</td><td>N/A</td></tr><tr><td>Other income</td><td></td><td>3,825</td><td>N/A 3,825</td><td>N/A</td></tr><tr><td>Selling and distribution expenses</td><td></td><td>(2,693)</td><td>N/A (2,693)</td><td>N/A</td></tr><tr><td>Administrative costs</td><td></td><td>(3,332)</td><td>N/A (3,332)</td><td>N/A</td></tr><tr><td>Operating profit</td><td></td><td>7,307</td><td>N/A 7,307</td><td>N/A</td></tr><tr><td>Finance costs</td><td></td><td>(1,725)</td><td>N/A (1,725)</td><td>N/A</td></tr><tr><td>Profit before tax</td><td>B5</td><td>5,582</td><td>N/A 5,582</td><td>N/A</td></tr><tr><td>Income tax expense</td><td>B6</td><td>(1,529)</td><td>N/A (1,529)</td><td>N/A</td></tr><tr><td>Profit for the financial period, representing total comprehensive income for the financial period</td><td></td><td>4,053</td><td>N/A 4,053</td><td>N/A</td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Profit attributable to: Owners of the Company</td><td></td><td>4,053</td><td>N/A 4,053</td><td>N/A</td></tr><tr><td></td><td></td><td></td><td></td><td></td></tr><tr><td>Earnings per share (\"EPS\") Basic and diluted (sen) (3),(4)</td><td>B13</td><td>0.47</td><td>N/A 0.47</td><td>N/A</td></tr></table></body></html>"
+  },
+  {
+    "type": "paragraph_title",
+    "confidence": 0.581136167049408,
+    "content": "Notes:"
+  },
+  {
+    "type": "text",
+    "confidence": 0.9325225353240967,
+    "content": "N/A Not applicable."
+  },
+  {
+    "type": "text",
+    "confidence": 0.9720708727836609,
+    "content": "(1)The basis of preparation of this unaudited condensed consolidated statements of profit or loss and other comprehensive income is detailed in Note A1 of this report. It should be read in conjunction with the Accountants' Report as set out in the Prospectus of the PSP Energy Berhad (\"PSP Energy\" or \"Company\") dated 11 November 2025 in relation to its initial public offering (\"IPO\") (\"Prospectus\") as well as the accompanying explanatory notes attached in this report.\n"
+  },
+  {
+    "type": "text",
+    "confidence": 0.9773649573326111,
+    "content": "(2)This is the first interim financial report being announced in compliance with the ACE Market Listing Requirements of Bursa Malaysia Securities Berhad (\"Bursa Securities\") (\"Listing Requirements\"). There are no comparative figures for the preceding corresponding quarter and financial year-to-date, as no interim financial report has been prepared for the comparative periods concerned.\n"
+  }
+]
