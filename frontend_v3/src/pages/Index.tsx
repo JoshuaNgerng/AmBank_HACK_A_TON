@@ -5,23 +5,33 @@ import { Dashboard } from '@/components/Dashboard';
 import { EmptyState } from '@/components/EmptyState';
 import { FloatingChatButton } from '@/components/chat/FloatingChatButton';
 import { Company, DashboardData } from '@/types/market';
-import { generateMockDashboard } from '@/data/mockData';
+import { analyzeCompany } from '@/lib/api';
+import { useToast } from '@/hooks/use-toast';
 
 const Index = () => {
   const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
   const [dashboardData, setDashboardData] = useState<DashboardData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
 
   const handleSelectCompany = async (company: Company) => {
     setIsLoading(true);
     setSelectedCompany(company);
 
-    // Simulate API call - replace with actual endpoint
-    await new Promise((resolve) => setTimeout(resolve, 800));
-
-    const data = generateMockDashboard(company);
-    setDashboardData(data);
-    setIsLoading(false);
+    try {
+      const data = await analyzeCompany(company);
+      setDashboardData(data);
+    } catch (error) {
+      console.error('Failed to analyze company:', error);
+      toast({
+        title: 'Analysis Failed',
+        description: error instanceof Error ? error.message : 'Failed to analyze company',
+        variant: 'destructive',
+      });
+      setDashboardData(null);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (

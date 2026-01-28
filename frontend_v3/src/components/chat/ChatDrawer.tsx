@@ -5,7 +5,8 @@ import { Badge } from '@/components/ui/badge';
 import { ChatMessage } from './ChatMessage';
 import { ChatInput } from './ChatInput';
 import { ChatMessage as ChatMessageType, ChatContext } from '@/types/chat';
-import { generateMockResponse } from '@/lib/mockChatResponses';
+import { sendChatMessage } from '@/lib/api';
+import { useToast } from '@/hooks/use-toast';
 import { Bot } from 'lucide-react';
 
 interface ChatDrawerProps {
@@ -25,6 +26,7 @@ export function ChatDrawer({ open, onOpenChange, context }: ChatDrawerProps) {
   ]);
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const { toast } = useToast();
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -43,20 +45,33 @@ export function ChatDrawer({ open, onOpenChange, context }: ChatDrawerProps) {
     setMessages((prev) => [...prev, userMessage]);
     setIsTyping(true);
 
-    // Simulate AI response delay
-    await new Promise((resolve) => setTimeout(resolve, 800 + Math.random() * 700));
+    try {
+      // Build conversation history for context
+      const conversationHistory = messages.map((msg) => ({
+        role: msg.role,
+        content: msg.content,
+      }));
 
-    const response = generateMockResponse(content, context);
-    
-    const assistantMessage: ChatMessageType = {
-      id: (Date.now() + 1).toString(),
-      role: 'assistant',
-      content: response,
-      timestamp: new Date(),
-    };
+      const response = await sendChatMessage(content, context, conversationHistory);
+      
+      const assistantMessage: ChatMessageType = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: response,
+        timestamp: new Date(),
+      };
 
-    setMessages((prev) => [...prev, assistantMessage]);
-    setIsTyping(false);
+      setMessages((prev) => [...prev, assistantMessage]);
+    } catch (error) {
+      console.error('Chat error:', error);
+      toast({
+        title: 'Chat Error',
+        description: error instanceof Error ? error.message : 'Failed to get response',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   return (
