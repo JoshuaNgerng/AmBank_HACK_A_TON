@@ -3,6 +3,7 @@ import { Header } from '@/components/Header';
 import { SearchBar } from '@/components/SearchBar';
 import { Dashboard } from '@/components/Dashboard';
 import { EmptyState } from '@/components/EmptyState';
+import { FloatingChatButton } from '@/components/chat/FloatingChatButton';
 import { Company, DashboardData } from '@/types/market';
 import { generateMockDashboard } from '@/data/mockData';
 
@@ -58,6 +59,19 @@ const Index = () => {
           <p className="text-xs mt-1">Malaysian Stock Market Analysis Platform</p>
         </div>
       </footer>
+
+      {/* Floating Chat Button */}
+      <FloatingChatButton
+        context={{
+          selectedCompany: selectedCompany
+            ? {
+                name: selectedCompany.name,
+                stockCode: selectedCompany.stockCode,
+                sector: selectedCompany.sector,
+              }
+            : null,
+        }}
+      />
     </div>
   );
 };
