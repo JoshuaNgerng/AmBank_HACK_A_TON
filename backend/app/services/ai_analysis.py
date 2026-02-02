@@ -2,7 +2,7 @@ import json
 from string import Template
 from typing import Any
 from decimal import Decimal
-from services.ai_prompt import single_prompt_answer
+from app.services.ai_prompt import single_prompt_answer
 
 system_prompt = """
 You are Financial Analyst Assistant and company info is a json from a database

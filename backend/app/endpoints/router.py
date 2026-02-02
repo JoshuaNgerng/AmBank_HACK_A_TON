@@ -1,9 +1,9 @@
 from fastapi import APIRouter
 
-from endpoints.api.user import router as user_router
-from endpoints.api.admin import router as admin_router
-from endpoints.api.ingest_data import router as data_router
-from endpoints.api.ask_bot import router as bot_router
+from app.endpoints.api.user import router as user_router
+from app.endpoints.api.admin import router as admin_router
+from app.endpoints.api.ingest_data import router as data_router
+from app.endpoints.api.ask_bot import router as bot_router
 
 api_router = APIRouter()
 

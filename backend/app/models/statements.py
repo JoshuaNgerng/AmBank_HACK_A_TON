@@ -2,11 +2,11 @@ from decimal import Decimal
 from typing import Any, TYPE_CHECKING
 from sqlalchemy import Integer, Float, String, Numeric, JSON, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from models.base import TableBase
-from models.report import ReportingPeriod
+from sqlalchemy.ext.declarative import declared_attr
+from app.models.source import FinicialElementBase 
 
-class IncomeStatement(TableBase):
-    __tablename__ = "income_statements"
+class IncomeStatement(FinicialElementBase):
+    __tablename__ = "income_statement"
 
     revenue: Mapped[Decimal] = mapped_column(Numeric(15, 2), nullable=True)
     cost: Mapped[Decimal] = mapped_column(Numeric(15, 2), nullable=True)
@@ -23,21 +23,8 @@ class IncomeStatement(TableBase):
 
     eps: Mapped[Decimal] = mapped_column(Numeric(10, 4), nullable=True)
 
-    period: Mapped[str] = mapped_column(String, nullable=True)
-
-    sources: Mapped[Any] = mapped_column(JSON, nullable=True)
-
-    reporting_period_id: Mapped[int] = mapped_column(
-        ForeignKey("reporting_period.id"),
-        unique=True   # enforces one-to-one in DB
-    )
-
-    reporting_period: Mapped["ReportingPeriod"] = relationship(
-        back_populates="income_statement"
-    )
-
-class BalanceSheet(TableBase):
-    __tablename__ = "balance_sheets"
+class BalanceSheet(FinicialElementBase):
+    __tablename__ = "balance_sheet"
 
     current_assets: Mapped[Decimal] = mapped_column(
         Numeric(15, 2), nullable=True
@@ -63,21 +50,9 @@ class BalanceSheet(TableBase):
         Numeric(15, 2), nullable=True
     )
 
-    period: Mapped[str] = mapped_column(String, nullable=True)
 
-    sources: Mapped[Any] = mapped_column(JSON, nullable=True)
-
-    reporting_period_id: Mapped[int] = mapped_column(
-        ForeignKey("reporting_period.id"),
-        unique=True
-    )
-
-    reporting_period: Mapped["ReportingPeriod"] = relationship(
-        back_populates="balance_sheet"
-    )
-
-class CashFlowStatement(TableBase):
-    __tablename__ = "cash_flow_statements"
+class CashFlowStatement(FinicialElementBase):
+    __tablename__ = "cash_flow_statement"
 
     operating_cash_flow: Mapped[Decimal] = mapped_column(
         Numeric(15, 2), nullable=True
@@ -102,12 +77,3 @@ class CashFlowStatement(TableBase):
     period: Mapped[str] = mapped_column(String, nullable=True)
 
     sources: Mapped[Any] = mapped_column(JSON, nullable=True)
-
-    reporting_period_id: Mapped[int] = mapped_column(
-        ForeignKey("reporting_period.id"),
-        unique=True
-    )
-
-    reporting_period: Mapped["ReportingPeriod"] = relationship(
-        back_populates="cash_flow"
-    )

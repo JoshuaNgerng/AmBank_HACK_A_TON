@@ -1,7 +1,7 @@
 from rapidfuzz import process, fuzz
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-from models.report import Company
+from app.models.report import Company
 
 
 def normalize(text: str) -> str:

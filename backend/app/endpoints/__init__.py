@@ -1,1 +1,1 @@
-from endpoints.router import api_router
+from app.endpoints.router import api_router

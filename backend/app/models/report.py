@@ -1,36 +1,25 @@
-from models.base import TableBase
-from typing import Any, TYPE_CHECKING
+from typing import Any, TYPE_CHECKING, Optional
 from datetime import datetime
-from sqlalchemy import Integer, String, JSON, ForeignKey, Float, DateTime
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Integer, String, Enum, ForeignKey, Float, DateTime, ARRAY, inspect
+from sqlalchemy.orm import Mapped, mapped_column, relationship 
+from app.models.base import TableBase
 
 if TYPE_CHECKING:
-    from models.statements import IncomeStatement, BalanceSheet, CashFlowStatement
-    from models.analysis import BusinessStrategy, RiskAnalysis, QualitativePerformance, GrowthPotential
+    from app.models.statements import IncomeStatement, BalanceSheet, CashFlowStatement
+    from app.models.analysis import BusinessStrategy, RiskAnalysis, QualitativePerformance, GrowthPotential
+    from app.models.source import Source, PossibleStatement, PossibleSignal
 
-class SourceFragment(TableBase):
-    __tablename__ = "source_fragment"
 
-    signal_type: Mapped[str] = mapped_column(String)
-    page_number: Mapped[int] = mapped_column(Integer)
-    file_key: Mapped[str] = mapped_column(String)
-
-    text: Mapped[str] = mapped_column(String)
-    confidence: Mapped[float] = mapped_column(Float, default=0.0)
-
-    report_id: Mapped[int] = mapped_column(ForeignKey("company_report.id"))
-    company_report: Mapped["CompanyReport"] = relationship(
-        back_populates="report_sources", uselist=False,
-    )
 
 class ReportingPeriod(TableBase):
     __tablename__ = "reporting_period"
 
+    # must be the same as the CompanyReport its from never change it after creation
+    report_date: Mapped[datetime] = mapped_column(DateTime)
     # e.g. 2024, 2023, "5_year_summary", "historical"
     period_label: Mapped[str] = mapped_column(String)
-
-    year: Mapped[int | None] = mapped_column(Integer, nullable=True)
-    period_type: Mapped[str] = mapped_column(String)  
+    fiscal_year: Mapped[int] = mapped_column(Integer)
+    period_type: Mapped[str] = mapped_column(String)
     # "annual", "historical_summary", "quarterly", "unknown"
 
     # Finicial Statements
@@ -46,7 +35,7 @@ class ReportingPeriod(TableBase):
         cascade="all, delete-orphan"
     )
 
-    cash_flow: Mapped["CashFlowStatement"] = relationship(
+    cash_flow_statement: Mapped["CashFlowStatement"] = relationship(
         back_populates="reporting_period",
         uselist=False,
         cascade="all, delete-orphan"
@@ -77,30 +66,27 @@ class ReportingPeriod(TableBase):
         uselist=False,
         cascade="all, delete-orphan"
     )
-
-
-    report_id: Mapped[int] = mapped_column(ForeignKey("company_report.id"))
-    company_report: Mapped["CompanyReport"] = relationship(back_populates="periods")
+    company_id: Mapped[int] = mapped_column(ForeignKey("company.id"))
+    company: Mapped["Company"] = relationship(
+        back_populates="reporting_period",
+        uselist=False,
+    )
 
 class CompanyReport(TableBase):
     __tablename__ = "company_report"
 
-    report_type: Mapped[str] = mapped_column(String)  
+    file_key: Mapped[str] = mapped_column(String, nullable=False)
+    uploaded_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now, nullable=False)
+    celery_task_id: Mapped[str | None] = mapped_column(String, unique=True, nullable=True)
+    report_type: Mapped[str | None] = mapped_column(String, nullable=True)
     # "annual", "quarterly", "prospectus", etc.
     report_year: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    total_pages: Mapped[int] = mapped_column(Integer, default=0)
 
-    total_pages: Mapped[int] = mapped_column(Integer)
-    file_key: Mapped[str] = mapped_column(String)
-    uploaded_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.now, nullable=False)
+    company_id: Mapped[int | None] = mapped_column(ForeignKey("company.id"), nullable=True)
+    company: Mapped["Company"] = relationship(back_populates="company_reports")
 
-    company_id: Mapped[int] = mapped_column(ForeignKey("company.id"))
-    company : Mapped["Company"] = relationship(back_populates="reports")
-
-    periods: Mapped[list["ReportingPeriod"]] = relationship(
-        back_populates="company_report",
-        cascade="all, delete-orphan"
-    )
-    report_sources: Mapped[list["SourceFragment"]] = relationship(
+    report_sources: Mapped[list["Source"]] = relationship(
         back_populates="company_report",
         cascade="all, delete-orphan"
     )
@@ -110,42 +96,19 @@ class Company(TableBase):
 
     company_id: Mapped[str] = mapped_column(String(100), unique=True)  
     # ticker, registration number, etc.
-
     company_name: Mapped[str] = mapped_column(String(200))
 
-    reports: Mapped[list["CompanyReport"]] = relationship(
+    company_reports: Mapped[list["CompanyReport"]] = relationship(
+        back_populates="company",
+        cascade="all, delete-orphan"
+    )
+    reporting_period: Mapped[list["ReportingPeriod"]] = relationship(
         back_populates="company",
         cascade="all, delete-orphan"
     )
 
-"""
-Association table
-
-class SourceLink(TableBase):
-    __tablename__ = "source_link"
-
-    source_fragment_id: Mapped[int] = mapped_column(
-        ForeignKey("source_fragment.id", ondelete="CASCADE"),
-        primary_key=True,
-    )
-
-    owner_id: Mapped[int] = mapped_column(primary_key=True)
-    owner_type: Mapped[str] = mapped_column(primary_key=True)
-
-
-class CompanyReport(TableBase):
-    __tablename__ = "company_report"
-
-    id: Mapped[int] = mapped_column(primary_key=True)
-
-    report_sources: Mapped[list["SourceFragment"]] = relationship(
-        secondary="source_link",
-        primaryjoin=(
-            "and_(CompanyReport.id == foreign(SourceLink.owner_id), "
-            "SourceLink.owner_type == 'company_report')"
-        ),
-        secondaryjoin="SourceFragment.id == SourceLink.source_fragment_id",
-        viewonly=False,
-    )
-
-"""
+    def get_report_by_year(self, year: int) -> Optional["ReportingPeriod"]:
+        for report in self.reporting_period:
+            if report.fiscal_year == year:
+                return report
+        return None

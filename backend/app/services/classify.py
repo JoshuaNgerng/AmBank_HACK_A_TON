@@ -1,6 +1,9 @@
 import json
 from string import Template
-from services.ai_prompt import single_prompt_answer
+from venv import logger
+from app.services.ai_prompt import get_gemini_client 
+from app.models.source import Source 
+from app.schemas.classify import SentimentSignal, Statement
 
 template_sys_signal = """
 You are analyzing a section from a company's annual report.
@@ -37,15 +40,51 @@ cash_flow
 
 """
 
-def classify_ocr_result(data):
-    for page_no, info in data.items():
-        usr_prompt = template_user.substitute(
-            text=info.get('text'), tables=info.get('tables')
-        )
-        category = single_prompt_answer(template_sys, usr_prompt) or ''
-        info['category'] = json.loads(category)
-    return data
+template_usr_data = Template("""
+Title:
+$title
+                             
+Content:
+$body
+""")
 
+def classify_text_section(text_section: Source):
+    confidence = 0.0
+    remark = ''
+    client = get_gemini_client()
+    if text_section.tables:
+        ans = client.single_prompt_answer(
+            sys_prompt=template_sys_sheet, 
+            usr_prompt=template_usr_data.substitute(
+                title=text_section.title, body=text_section.body
+            ),
+            response_schema=Statement
+        )
+        logger.info(f'debugging expected typ Statement {type(ans)}')
+        assert isinstance(ans, Statement)
+        text_section.statement_type = ans.type
+        confidence = ans.confidence
+        remark += ans.remarks or ''
+    if text_section.body:
+        ans = client.single_prompt_answer(
+            sys_prompt=template_sys_signal, 
+            usr_prompt=template_usr_data.substitute(
+                title=text_section.title, body=text_section.body
+            ),
+            response_schema=SentimentSignal
+        )
+        if ans is None:
+            pass
+        logger.info(f'debugging expected typ SentimentSignal {type(ans)}')
+        assert isinstance(ans, SentimentSignal)
+        text_section.signals = ans.signals
+        if not confidence:
+            confidence = ans.confidence
+        else:
+            confidence = (confidence + ans.confidence) / 2
+        remark += ans.remarks or ''
+    text_section.confidence = confidence
+    text_section.classification_remarks = remark
 
 name_sys = """
 Your task is to find the company name the user is referring to in this request
@@ -56,4 +95,4 @@ Do NOT return explanations.
 """
 
 def extract_company_name_user_prompt(text) -> str:
-    return single_prompt_answer(name_sys, text) or ''
+    return single_prompt_answer(name_sys, text) or '' # type: ignore , its a str

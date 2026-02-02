@@ -1,1 +1,1 @@
-from endpoints.api import admin, ask_bot, ingest_data
+from app.endpoints.api import admin, ask_bot, ingest_data

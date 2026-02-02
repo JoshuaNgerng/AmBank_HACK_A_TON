@@ -3,11 +3,10 @@ from decimal import Decimal
 from typing import Any, TYPE_CHECKING
 from sqlalchemy import Integer, Float, Date, Numeric, JSON, String, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from models.base import TableBase
-from models.report import ReportAnalysis
+from app.models.source import FinicialElementBase 
 
-class BusinessStrategy(TableBase):
-    __tablename__ = "business_strategies"
+class BusinessStrategy(FinicialElementBase):
+    __tablename__ = "business_strategy"
 
     # Basic fields
     summary: Mapped[str | None] = mapped_column(String, nullable=True)
@@ -17,17 +16,7 @@ class BusinessStrategy(TableBase):
     core_focus: Mapped[list[str]] = mapped_column(JSON, nullable=False, default=[])
     competitive_advantages: Mapped[list[str]] = mapped_column(JSON, nullable=False, default=[])
 
-    # One-to-one relationship with ReportAnalysis
-    report_analysis_id: Mapped[int] = mapped_column(
-        ForeignKey("report_analysis.id"),
-        unique=True  # ensures one-to-one relationship
-    )
-
-    report_analysis: Mapped["ReportAnalysis"] = relationship(
-        back_populates="business_strategy"
-    )
-
-class RiskAnalysis(TableBase):
+class RiskAnalysis(FinicialElementBase):
     __tablename__ = "risk_analysis"
 
     # Enum-like fields stored as strings
@@ -40,18 +29,8 @@ class RiskAnalysis(TableBase):
     # Optional string
     risk_management_approach: Mapped[str | None] = mapped_column(String, nullable=True)
 
-    # One-to-one relationship with ReportAnalysis
-    report_analysis_id: Mapped[int] = mapped_column(
-        ForeignKey("report_analysis.id"),
-        unique=True  # ensures one-to-one relationship
-    )
 
-    report_analysis: Mapped["ReportAnalysis"] = relationship(
-        back_populates="risk_analysis"
-    )
-
-
-class QualitativePerformance(TableBase):
+class QualitativePerformance(FinicialElementBase):
     __tablename__ = "qualitative_performance"
 
     # Enum-like fields stored as strings
@@ -61,17 +40,8 @@ class QualitativePerformance(TableBase):
     # Array of strings stored as JSON
     supporting_signals: Mapped[list[str]] = mapped_column(JSON, nullable=False, default=[])
 
-    # One-to-one relationship with ReportAnalysis
-    report_analysis_id: Mapped[int] = mapped_column(
-        ForeignKey("report_analysis.id"),
-        unique=True  # ensures one-to-one relationship
-    )
 
-    report_analysis: Mapped["ReportAnalysis"] = relationship(
-        back_populates="qualitative_performance"
-    )
-
-class GrowthPotential(TableBase):
+class GrowthPotential(FinicialElementBase):
     __tablename__ = "growth_potential"
 
     # Enum-like field stored as string
@@ -83,14 +53,4 @@ class GrowthPotential(TableBase):
 
     # Optional string
     summary: Mapped[str | None] = mapped_column(String, nullable=True)
-
-    # One-to-one relationship with ReportAnalysis
-    report_analysis_id: Mapped[int] = mapped_column(
-        ForeignKey("report_analysis.id"),
-        unique=True  # ensures one-to-one relationship
-    )
-
-    report_analysis: Mapped["ReportAnalysis"] = relationship(
-        back_populates="growth_potential"
-    )
 

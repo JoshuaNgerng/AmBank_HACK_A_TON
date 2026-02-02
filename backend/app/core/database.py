@@ -1,11 +1,12 @@
 """Database connection and session management (sync version)."""
 
+from contextlib import contextmanager
 from urllib.parse import quote_plus
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, Session, class_mapper
-from core.config import get_settings
 from collections.abc import Mapping
 from typing import Generator
+from app.core.config import get_settings
 
 settings = get_settings()
 
@@ -49,10 +50,22 @@ def get_db() -> Generator[Session, None, None]:
             db.close()
 
 # For manual session usage
-def get_session() -> Session:
+def get_db_session_instance() -> Session:
     """Get a new session for manual connection management."""
     return SessionLocal()
 
+# Recommended to use context as much as possible
+@contextmanager
+def get_db_session():
+    db = get_db_session_instance()
+    try:
+        yield db
+        db.commit()
+    except Exception:
+        db.rollback()
+        raise
+    finally:
+        db.close()
 
 def from_dict(model_class, data: dict):
     """
