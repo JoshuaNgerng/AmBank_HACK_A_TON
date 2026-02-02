@@ -7,8 +7,12 @@ services:
       - postgres_data:/var/lib/postgresql/data/ # Persistent data storage for PostgreSQL
     ports:
       - "5432:5432"  # Expose port 5432 for external access
+    # expose:
+    #   - 5432
     env_file:
       - .env # Load environment variables
+    networks:
+      - app-network
 
   backend:
     build:
@@ -19,11 +23,34 @@ services:
       - db
     env_file:
       - .env
-    ports:
-      - "8000:8000"
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
     environment:
       POSTGRES_HOST: db
-  
+    volumes:
+      - ./storage:/storage
+    networks:
+      - app-network
+
+  celery:
+    container_name: celery
+    restart: always
+    build:
+      context: ./backend
+    command: ["celery", "-A", "app.worker", "worker", "--loglevel=info", "--pool=solo", "--concurrency=1"]
+    # command: ["tail", "-f"]
+    depends_on:
+      - redis
+      - backend
+    env_file:
+      - .env
+    shm_size: "10gb"
+    environment:
+      POSTGRES_HOST: db
+    volumes:
+      - ./storage:/storage
+    networks:
+      - app-network
+
   frontend:
     build: ./frontend
     container_name: frontend
@@ -32,19 +59,33 @@ services:
       - backend
     env_file:
       - .env
-    ports:
-      - "5173:5173"
     command: ["npm", "run", "dev", "--", "--host", "0.0.0.0"]
+    networks:
+      - app-network
 
-  # nginx:
-  #   image: nginx:latest
-  #   container_name: nginx
-  #   depends_on:
-  #     - backend
-  #   ports:
-  #     - "8080:80"
-  #   volumes:
-  #     - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    depends_on:
+      - backend
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    networks:
+      - app-network
+
+  redis:
+    container_name: redis
+    image: redis:7-alpine
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - app-network
 
 volumes:
   postgres_data:
@@ -53,4 +94,9 @@ volumes:
       type: none
       device: ./db/postgres_data
       o: bind # Bind mount for local PostgreSQL data
+  redis_data:
+    driver: local
   
+networks:
+  app-network:
+    driver: bridge
