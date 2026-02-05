@@ -20,7 +20,7 @@ DATABASE_URL = (
     f"{settings.POSTGRES_PORT}/"
     f"{settings.POSTGRES_DB}"
 )
-
+print(DATABASE_URL)
 # Create the engine
 engine = create_engine(
     DATABASE_URL,

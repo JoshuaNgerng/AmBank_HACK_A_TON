@@ -15,8 +15,8 @@ router = APIRouter()
 async def admin_init_db(db: Session = Depends(get_db)):
     try:
         init_db()
-    except:
-        return "FAK UP"
+    except Exception as e:
+        return f"FAK UP: {e}"
     return "DB init success"
 
 @router.get('/clear_db')

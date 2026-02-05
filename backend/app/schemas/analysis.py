@@ -1,15 +1,21 @@
 from pydantic import BaseModel, Field
 from typing import Literal
 from app.schemas.shared_identifier import IdentifierBase, DataListBase
+from app.models.analysis import SentimentTopic, SentimentLabel, DegreeLevelEnum, RiskTopics, RiskTone
+
 
 class BusinessStrategy(IdentifierBase):
     summary: str | None = Field(
         None,
         description="A high-level narrative summary of the company's financial health and performance."
     )
-    core_focus: list[str] = Field(
+    primary_theme: list[str] = Field(
         ...,
         description="List of the company's primary business focuses or revenue-generating areas."
+    )
+    core_focus: list[str] = Field(
+        ...,
+        description=""
     )
     competitive_advantages: list[str] = Field(
         ...,
@@ -19,15 +25,27 @@ class BusinessStrategy(IdentifierBase):
         None,
         description="Narrative of the company's planned strategic initiatives or future direction."
     )
+    execution_risk: str | None = Field(
+        ..., description="Potential operation risk"
+    )
 
 class BusinessStrategyData(DataListBase[BusinessStrategy]):
     data: list[BusinessStrategy] = Field(default_factory=list)
 
+
 class RiskAnalysis(IdentifierBase):
-    risk_posture: Literal["Low", "Moderate", "High", "Unknown"] = Field(
+    topic: RiskTopics = Field(
+        ..., description="Classification of the risk"
+    )
+    risk_posture: DegreeLevelEnum = Field(
         ...,
         description="Overall assessment of the company's risk exposure or vulnerability."
     )
+    risk_score: float = Field(
+        ...,
+        description='Numeric representation of risk  exposure or vulnerability.'
+    )
+    tone: RiskTone = Field(...)
     key_risks: list[str] = Field(
         ...,
         description="List of the most significant risks facing the company, e.g., operational, financial, regulatory."
@@ -36,22 +54,34 @@ class RiskAnalysis(IdentifierBase):
         None,
         description="Narrative description of how the company manages or mitigates its key risks."
     )
-    tone: Literal["Proactive", "Defensive", "Vague", "Transparent", "Mixed", "Unknown"] = Field(
-        ...,
-        description="The qualitative tone of the company's risk communication or strategy."
-    )
+    summary: str = Field(...)
+
 
 class RiskAnalysisData(DataListBase[RiskAnalysis]):
     data: list[RiskAnalysis] = Field(default_factory=list)
 
+
 class QualitativePerformance(IdentifierBase):
-    sentiment: Literal["Positive", "Neutral", "Negative", "Mixed", "Unknown"] = Field(
+    topic: SentimentTopic = Field(
+        ...,
+        description='sentiment topic'
+    )
+    sentiment_label: SentimentLabel = Field(
         ...,
         description="Overall qualitative sentiment regarding the company's performance."
     )
-    confidence_level: Literal["High", "Medium", "Low", "Unknown"] = Field(
+    sentiment_score: float = Field(
+        ...,
+        description='Quantity of sentiment as a score',
+        ge=-1, le=1
+    )
+    confidence_level: DegreeLevelEnum = Field(
         ...,
         description="Degree of confidence in the qualitative assessment based on available information."
+    )
+    rationale: str | None = Field(
+        default=None,
+        description='Supporting Reason for assesment'
     )
     supporting_signals: list[str] = Field(
         ...,
@@ -61,11 +91,13 @@ class QualitativePerformance(IdentifierBase):
 class QualitativePerformanceData(DataListBase[QualitativePerformance]):
     data: list[QualitativePerformance] = Field(default_factory=list)
 
+
 class GrowthPotential(IdentifierBase):
-    level: Literal["High", "Medium", "Low", "Unknown"] = Field(
+    growth_level: DegreeLevelEnum = Field(
         ...,
         description="Overall assessment of the company's growth potential based on market conditions, strategy, and performance."
     )
+    growth_score: float = Field(...)
     growth_drivers: list[str] = Field(
         ...,
         description="Key factors expected to drive future growth, such as market expansion, product innovation, or pricing power."

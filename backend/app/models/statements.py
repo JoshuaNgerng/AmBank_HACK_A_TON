@@ -3,9 +3,9 @@ from typing import Any, TYPE_CHECKING
 from sqlalchemy import Integer, Float, String, Numeric, JSON, ForeignKey
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy.ext.declarative import declared_attr
-from app.models.source import FinicialElementBase 
+from app.models.source import FinancialElementBase 
 
-class IncomeStatement(FinicialElementBase):
+class IncomeStatement(FinancialElementBase):
     __tablename__ = "income_statement"
 
     revenue: Mapped[Decimal] = mapped_column(Numeric(15, 2), nullable=True)
@@ -23,7 +23,7 @@ class IncomeStatement(FinicialElementBase):
 
     eps: Mapped[Decimal] = mapped_column(Numeric(10, 4), nullable=True)
 
-class BalanceSheet(FinicialElementBase):
+class BalanceSheet(FinancialElementBase):
     __tablename__ = "balance_sheet"
 
     current_assets: Mapped[Decimal] = mapped_column(
@@ -51,7 +51,7 @@ class BalanceSheet(FinicialElementBase):
     )
 
 
-class CashFlowStatement(FinicialElementBase):
+class CashFlowStatement(FinancialElementBase):
     __tablename__ = "cash_flow_statement"
 
     operating_cash_flow: Mapped[Decimal] = mapped_column(

@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr
 
 class UserQuestion(BaseModel):
-    prompt: str
+    chat_history: list[str]
+    
 

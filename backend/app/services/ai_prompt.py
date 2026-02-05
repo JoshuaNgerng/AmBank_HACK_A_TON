@@ -164,7 +164,7 @@ class GeminiRateLimitedClient:
                     f"(attempt {attempt}/{self.max_retries}), "
                     f"retrying in {backoff:.2f}s: {e}"
                 )
-                time.sleep(backoff)
+                time.sleep(backoff * 60 * 2)
 
 def get_gemini_client():
     global client

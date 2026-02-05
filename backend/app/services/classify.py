@@ -60,6 +60,8 @@ def classify_text_section(text_section: Source):
             ),
             response_schema=Statement
         )
+        if not ans:
+            return False
         logger.info(f'debugging expected typ Statement {type(ans)}')
         assert isinstance(ans, Statement)
         text_section.statement_type = ans.type
@@ -74,7 +76,7 @@ def classify_text_section(text_section: Source):
             response_schema=SentimentSignal
         )
         if ans is None:
-            pass
+            return False
         logger.info(f'debugging expected typ SentimentSignal {type(ans)}')
         assert isinstance(ans, SentimentSignal)
         text_section.signals = ans.signals
@@ -85,6 +87,21 @@ def classify_text_section(text_section: Source):
         remark += ans.remarks or ''
     text_section.confidence = confidence
     text_section.classification_remarks = remark
+    return True
+
+def __flexible_iterator(data: list, start_index=0):
+    for i, value in enumerate(data):
+        if i < start_index:
+            continue
+        yield i, value
+
+def classify_text_sections(text_sections: list[Source], start_index=0):
+    for idx, section in __flexible_iterator(text_sections, start_index):
+        check = classify_text_section(section)
+        if not check:
+            return {'status': False, 'data': None, 'index': idx}
+    return {'status': True, 'data': None, 'index': None}
+
 
 name_sys = """
 Your task is to find the company name the user is referring to in this request
@@ -95,4 +112,4 @@ Do NOT return explanations.
 """
 
 def extract_company_name_user_prompt(text) -> str:
-    return single_prompt_answer(name_sys, text) or '' # type: ignore , its a str
+    return get_gemini_client().single_prompt_answer(name_sys, text) or '' # type: ignore , its a str

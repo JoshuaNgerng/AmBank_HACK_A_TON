@@ -143,7 +143,7 @@ with pdf_open(stream=data) as pdf:
         with open(f'example_{page.number}.json', 'w') as f:
             json.dump(test, f, indent=2)
         
-        if int(page.number or 0) > 3:
+        if int(page.number or 0) > 10:
             break
 
 

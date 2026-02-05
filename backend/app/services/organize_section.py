@@ -1,9 +1,10 @@
 from datetime import datetime
+from enum import Enum
 import json
 from typing import Iterable
 from venv import logger
 from app.schemas.classify import TextSection, SectionTypes
-from app.models.source import Source, FinicialElementBase
+from app.models.source import Source, FinancialElementBase
 from app.models.report import CompanyReport, Company, ReportingPeriod
 from app.schemas.shared_identifier import DataListBase, IdentifierBase
 from app.core.database import from_dict
@@ -45,7 +46,7 @@ def save_text_sections(report: CompanyReport, text_sections: list[list[TextSecti
     logger.info(f'debug total len report sources {len(report.report_sources)}')
 
 def save_ai_response_schema(
-        company: Company, response: DataListBase, db_model: type[FinicialElementBase],
+        company: Company, response: DataListBase, db_model: type[FinancialElementBase],
         db_field: str, data_date: datetime, sources_id: Iterable[int] = []
 ):
     for statement in response.data:
@@ -66,4 +67,20 @@ def flexible_iterator(data: dict, start_index=0):
     for i, (key, value) in enumerate(data.items()):
         if i < start_index:
             continue
-        yield key, value
+        yield i, key, value
+
+def adjust_raw_json_with_enum(data: dict, enum: type[Enum]):
+    res = {}
+    for key, val in data.items():
+        try:
+            check = enum(key)
+            res[check] = val
+        except:
+            continue
+    return res
+
+def adjust_json_enum_key_2_str(data: dict):
+    res = {}
+    for key, val in data.items():
+        res[str(key)] = val
+    return res

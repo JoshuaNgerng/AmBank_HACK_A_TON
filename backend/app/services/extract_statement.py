@@ -6,12 +6,14 @@ from functools import lru_cache
 from app.core.database import from_dict
 from app.core.logging import logger
 from app.services.ai_prompt import get_gemini_client
-from app.services.organize_section import flexible_iterator, save_ai_response_schema
-from app.models.report import Company, CompanyReport, ReportingPeriod, Source
-from app.models.source import FinicialElementBase
+from app.services.organize_section import (
+    flexible_iterator, adjust_json_enum_key_2_str, adjust_raw_json_with_enum,
+    save_ai_response_schema
+)
+from app.models.report import Company, CompanyReport, ReportingPeriod
+from app.models.source import FinancialElementBase, PossibleStatement, Source
 from app.models.statements import IncomeStatement, BalanceSheet, CashFlowStatement
 from app.schemas.statements import IncomeStatements, BalanceSheets, CashFlowStatments 
-from app.schemas.shared_identifier import IdentifierBase, DataListBase
 
 template_income_sys = """
 You are analyzing the income statement from a company's annual report.
@@ -41,25 +43,28 @@ $tables
 @lru_cache
 def __cache_mapping():
     return {
-        'income_statement': (template_income_sys, IncomeStatements, IncomeStatement),
-        'balance_sheet': (template_balance_sys, BalanceSheets, BalanceSheet),
-        'cash_flow_statement': (template_cash_sys, CashFlowStatments, CashFlowStatement)
+        PossibleStatement.income_statement: (template_income_sys, IncomeStatements, IncomeStatement),
+        PossibleStatement.balance_sheet: (template_balance_sys, BalanceSheets, BalanceSheet),
+        PossibleStatement.cash_flow_statement: (template_cash_sys, CashFlowStatments, CashFlowStatement)
     }
 
 def prepare_statement_data(sources: list[Source]):
     check_dup = set()
     mapping = __cache_mapping()
-    data_group : dict[str, tuple[str, str, int]]= {}
+    data_group : dict[PossibleStatement, tuple[str, str, int]]= {}
     for data in sources:
+        print(f'debug {len(data.tables or "")}, {data.statement_type}')
         if not data.tables or data.statement_type not in mapping:
+            # print(data.statement_type)
+            print('trigger skip')
             continue
         if data.statement_type in check_dup:
+            print('debug found dup')
             continue
         check_dup.add(data.statement_type)
-        data_group[str(data.statement_type)] = (data.title, data.tables, data.id)
+        data_group[data.statement_type] = (data.title or '', data.tables, data.id)
         # assume only one source of statement is valid
     return data_group
-
 
 def extract_statement_from_sources(
         report: CompanyReport, company: Company,
@@ -69,10 +74,12 @@ def extract_statement_from_sources(
     mapping = __cache_mapping()
     client = get_gemini_client()
     if not data_group:
-        data_group = prepare_statement_data(report.report_sources)
-    for type, (sys_prompt, prompt_schema, db_model) in flexible_iterator(mapping, resume_index):
+        data = prepare_statement_data(report.report_sources)
+    else:
+        data = adjust_raw_json_with_enum(data_group, PossibleStatement)
+    for idx, type, (sys_prompt, prompt_schema, db_model) in flexible_iterator(mapping, resume_index):
         try:
-            title, table, id_ = data_group[type]
+            title, table, id_ = data[type]
         except:
             logger.warning(f'{report.celery_task_id}, {report.file_key}: {type} not found')
             continue
@@ -81,6 +88,9 @@ def extract_statement_from_sources(
             sys_prompt=sys_prompt, usr_prompt=usr_prompt, response_schema=prompt_schema
         )
         if not response:
-            return {'status': False, 'data': data_group}
-        save_ai_response_schema(company, response, db_model, type, (id_,), report.uploaded_at) # type: ignore
-        return {'status': True, 'data': None}
+            return {'status': False, 'data': adjust_json_enum_key_2_str(data), 'index': idx}
+        save_ai_response_schema(
+            company, response, db_model, type, # type: ignore
+            report.uploaded_at, sources_id=(id_,) # type: ignore
+        ) 
+    return {'status': True, 'data': None, 'index': None}

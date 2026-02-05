@@ -49,9 +49,9 @@ class Source(TableBase):
         nullable=False,
         default=list  
     )
-    title: Mapped[str] = mapped_column(String)
-    body: Mapped[str] = mapped_column(String)
-    tables: Mapped[str] = mapped_column(String)
+    title: Mapped[str | None] = mapped_column(String, nullable=True)
+    body: Mapped[str | None] = mapped_column(String, nullable=True)
+    tables: Mapped[str | None] = mapped_column(String, nullable=True)
     classification_remarks = mapped_column(String)
     confidence: Mapped[float] = mapped_column(Float, default=0.0)
 
@@ -150,12 +150,12 @@ class SourceLinker(TableBase):
         self.source_links.append(buffer)
 
 
-class FinicialElementBase(SourceLinker):
+class FinancialElementBase(SourceLinker):
     __abstract__ = True
     confidence: Mapped[Decimal] = mapped_column(Numeric(4, 2), default=0.0)
     remarks: Mapped[str | None] = mapped_column(String, default=None, nullable=True)
     reporting_period_id: Mapped[int] = mapped_column(
-        ForeignKey("reporting_period.id"), unique=True   # enforces one-to-one in DB
+        ForeignKey("reporting_period.id"), index=True
     )
     @declared_attr
     def reporting_period(cls) -> Mapped["ReportingPeriod"]:

@@ -1,11 +1,14 @@
 import json
 from typing import Any
 from fastapi import APIRouter, Depends, UploadFile, HTTPException, File
+from sqlalchemy import select
 from sqlalchemy.orm import Session
 from celery import chain
-from app.celery.ocr import process_pdf, analysis_ocr_result
+from app.celery.ocr import process_pdf, analysis_ocr_result, rerun_analysis_ocr_result
 from app.services.file import file_manager
+from app.schemas.data_response import ReportProcessingStatus, IncompleteTasks
 from app.models.report import CompanyReport
+from app.models.task import TaskProgress
 from app.core.database import get_db
 from app.core.logging import logger
 
@@ -20,7 +23,7 @@ async def test_dir(
     return {"dir": file_manager.file_root}
 
 
-@router.post('/annual_report', response_model=dict[str, Any])
+@router.post('/annual_report', response_model=ReportProcessingStatus)
 async def ingest_annual_report(
     file: UploadFile, 
     db: Session = Depends(get_db)
@@ -43,10 +46,50 @@ async def ingest_annual_report(
         report.celery_task_id = workflow.id # type: ignore
         db.commit()
 
-        return {"status": f"process file task {report.celery_task_id} sucessfully scheduled"}
+        return ReportProcessingStatus(
+            status=f"process file task {report.celery_task_id} sucessfully scheduled"
+        )
 
     except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Failed to process PDF: {str(e)}"
         )
+
+@router.get('/incomplete_task', response_model=list[IncompleteTasks])
+def get_all_incomplete_task_id(db: Session = Depends(get_db)):
+    data = db.execute(
+        select(TaskProgress).where(TaskProgress.complete == False)
+    ).scalars().all()
+    report_id = set()
+    for task in data:
+        report_id.add(task.report_id)
+    report_info = db.execute(
+        select(CompanyReport.id, CompanyReport.file_key)
+        .where(CompanyReport.id.in_(report_id))
+    ).scalars().all()
+    res = []
+    for task in data:
+        result = next((file for id_, file in report_info if id_ == task.report_id), '')
+        res.append(
+            IncompleteTasks(
+                task_id=task.id, celery_task_id=task.celery_task_id,
+                report_id=task.report_id, file_key=result
+            )
+        )
+    return res
+
+@router.get('/rerun_task/{task_id}', response_model=ReportProcessingStatus)
+def rerun_task(task_id: int, db: Session = Depends(get_db)):
+    task_info = db.execute(
+        select(TaskProgress).where(TaskProgress.id == task_id)
+    ).scalar_one_or_none()
+    if not task_info:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Cannot find task {task_id}"
+        )
+    task = rerun_analysis_ocr_result.apply_async(args=[task_id]) # type: ignore celery
+    return ReportProcessingStatus(
+        status=f"rerun processing task {task_id} with celery task {task.id}"
+    )    

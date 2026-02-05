@@ -2,7 +2,7 @@ import json
 from string import Template
 from typing import Any
 from decimal import Decimal
-from app.services.ai_prompt import single_prompt_answer
+from app.services.ai_prompt import get_gemini_client
 
 system_prompt = """
 You are Financial Analyst Assistant and company info is a json from a database
@@ -41,4 +41,8 @@ def convert_decimals_to_str(d):
 
 def ask_ai_about_company(user_prompt: str, company_info: dict[str, Any]):
     info = convert_decimals_to_str(company_info)
-    return single_prompt_answer(system_prompt, user_prompt_template.substitute(company_info=json.dumps(info), user_prompt=user_prompt))
+    return get_gemini_client().single_prompt_answer(
+        system_prompt, user_prompt_template.substitute(
+            company_info=json.dumps(info), user_prompt=user_prompt
+        )
+    )

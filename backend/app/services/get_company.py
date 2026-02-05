@@ -1,6 +1,6 @@
 from app.services.ai_prompt import get_gemini_client
-from app.schemas.classify import TextSection
 from app.schemas.company_info import CompanyInfo
+from app.models.source import Source
 from app.core.logging import logger
 
 def prompt_company_info(text: str) -> CompanyInfo:
@@ -15,15 +15,13 @@ def prompt_company_info(text: str) -> CompanyInfo:
     )
     return result # type: ignore
 
-def get_company_info(ocr_result: list[list[TextSection]]) -> CompanyInfo:
+def get_company_info(sources_list: list[Source]) -> CompanyInfo | None:
     res = ''
-    for line in ocr_result:
-        # logger.info(type(line))
-        for data in line:
-            # logger.info(f'debug get company info loop: {type(data)}')
-            res += data.content + '\n'
-            if len(res) > 10000:
-                break
+    for data in sources_list:
+        if data.title:
+            res += data.title + '\n'
+        if data.body:
+            res += data.body + '\n'
         if len(res) > 10000:
             break
     return prompt_company_info(res)
