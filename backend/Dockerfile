@@ -1,4 +1,4 @@
-FROM python:3.10-slim-bullseye
+FROM python:3.12-slim-bullseye
 
 RUN apt-get update && apt-get install -y \
     gcc libpq-dev \
@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # RUN pip install paddlepaddle -f https://www.paddlepaddle.org.cn/whl/linux/cpu/noavx/stable.html
-# RUN pip install 'paddlex[ocr]'
+RUN pip install 'paddlex[ocr]'
 
 # to limit paddle ocr threads 
 # ENV OMP_NUM_THREADS=1

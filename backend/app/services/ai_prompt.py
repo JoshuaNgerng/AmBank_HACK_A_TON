@@ -1,13 +1,14 @@
 import json
-from venv import logger
 import time
 import random
+from enum import Enum
 from collections import deque
 from datetime import datetime, timezone
 from typing import Type
 from functools import lru_cache
 
 from app.core.config import settings
+from app.core.logging import logger
 
 from pydantic import BaseModel
 from google import genai
@@ -171,3 +172,32 @@ def get_gemini_client():
     if client: return client
     client = GeminiRateLimitedClient()
     return client
+
+def enum_to_examples(
+    enum: type[Enum],
+    *,
+    quoted: bool = False,
+    separator: str = ", ",
+    limit: int | None = None
+) -> str:
+    """
+    Convert an Enum into a list of example strings.
+    
+    Parameters:
+    - enum: Enum class
+    - quoted: wrap each value in double quotes (default False)
+    - separator: ignored here, useful if you want to join later
+    - limit: max number of examples to return (None = all)
+    
+    Returns:
+    - List of strings representing enum values
+    """
+    values = [str(member.value) for member in enum]
+
+    if limit is not None:
+        values = values[:limit]
+
+    if quoted:
+        values = [f'"{v}"' for v in values]
+
+    return separator.join(values)

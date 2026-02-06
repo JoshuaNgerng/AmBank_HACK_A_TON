@@ -189,3 +189,5 @@ class GrowthPotential(FinancialElementBase):
     summary: Mapped[str | None] = mapped_column(String)
 
 
+if __name__ == '__main__':
+    print(GrowthPotential.reporting_period)

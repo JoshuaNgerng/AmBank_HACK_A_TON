@@ -2,7 +2,7 @@
 
 from contextlib import contextmanager
 from urllib.parse import quote_plus
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, Enum as SAEnum
 from sqlalchemy.orm import sessionmaker, Session, class_mapper
 from collections.abc import Mapping
 from typing import Generator
@@ -67,11 +67,16 @@ def get_db_session():
     finally:
         db.close()
 
+from collections.abc import Mapping
+from sqlalchemy.orm import class_mapper
+from sqlalchemy import Enum as SAEnum
+
 def from_dict(model_class, data: dict):
     """
     Create a SQLAlchemy model instance from a dict.
     Uses __table__ and class_mapper instead of sqlalchemy.inspect.
     Supports nested relationships.
+    Automatically converts Enum columns from string values to Enum members.
     """
     if data is None:
         return None
@@ -83,7 +88,21 @@ def from_dict(model_class, data: dict):
 
     for name in column_names:
         if name in data:
-            setattr(obj, name, data[name])
+            value = data[name]
+            column = model_class.__table__.columns[name]
+
+            # If column is an Enum, convert string to Enum member
+            if isinstance(column.type, SAEnum):
+                enum_class = column.type.enum_class
+                if value is not None and not isinstance(value, enum_class):
+                    try:
+                        value = enum_class(value)
+                    except ValueError:
+                        raise ValueError(
+                            f"Invalid value '{value}' for enum {enum_class}"
+                        )
+
+            setattr(obj, name, value)
 
     # ---- Relationships ----
     mapper = class_mapper(model_class)
@@ -100,7 +119,7 @@ def from_dict(model_class, data: dict):
         if rel.uselist:
             if isinstance(value, list):
                 children = [
-                    from_dict(target, item) # type: ignore
+                    from_dict(target, item)  # type: ignore
                     for item in value
                     if isinstance(item, Mapping)
                 ]
@@ -109,6 +128,6 @@ def from_dict(model_class, data: dict):
         # many-to-one / one-to-one
         else:
             if isinstance(value, Mapping):
-                setattr(obj, key, from_dict(target, value)) # type: ignore
+                setattr(obj, key, from_dict(target, value))  # type: ignore
 
     return obj

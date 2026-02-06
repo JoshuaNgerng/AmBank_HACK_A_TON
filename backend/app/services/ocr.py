@@ -17,9 +17,9 @@ os.environ["OMP_NUM_THREADS"] = "4"
 os.environ["MKL_NUM_THREADS"] = "4"
 
 loaded: bool = False
-det_model_name = 'PP-OCRv4_mobile_det'
-rec_model_name = 'en_PP-OCRv4_mobile_rec'
-layout_model_name = "PP-DocLayout-S"
+det_model_name = 'PP-OCRv5_mobile_det'
+rec_model_name = 'en_PP-OCRv5_mobile_rec'
+layout_model_name = "PP-DocLayoutV2"
 
 from paddleocr import PPStructureV3
 

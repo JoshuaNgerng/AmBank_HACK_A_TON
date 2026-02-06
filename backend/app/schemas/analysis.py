@@ -5,10 +5,6 @@ from app.models.analysis import SentimentTopic, SentimentLabel, DegreeLevelEnum,
 
 
 class BusinessStrategy(IdentifierBase):
-    summary: str | None = Field(
-        None,
-        description="A high-level narrative summary of the company's financial health and performance."
-    )
     primary_theme: list[str] = Field(
         ...,
         description="List of the company's primary business focuses or revenue-generating areas."
@@ -27,6 +23,10 @@ class BusinessStrategy(IdentifierBase):
     )
     execution_risk: str | None = Field(
         ..., description="Potential operation risk"
+    )
+    summary: str | None = Field(
+        None,
+        description="A high-level narrative summary of the company's financial health and performance."
     )
 
 class BusinessStrategyData(DataListBase[BusinessStrategy]):
@@ -50,11 +50,14 @@ class RiskAnalysis(IdentifierBase):
         ...,
         description="List of the most significant risks facing the company, e.g., operational, financial, regulatory."
     )
+    summary: str = Field(
+        ...,
+        description="A high-level narrative summary of the company's risk and vulnerability"
+    )
     risk_management_approach: str | None = Field(
         None,
         description="Narrative description of how the company manages or mitigates its key risks."
     )
-    summary: str = Field(...)
 
 
 class RiskAnalysisData(DataListBase[RiskAnalysis]):

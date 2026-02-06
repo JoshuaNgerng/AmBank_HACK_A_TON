@@ -2,18 +2,25 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import Select
 from sqlalchemy.orm import Session, selectinload
 from app.core.database import from_dict, get_db
-from app.schemas.ask_bot import UserQuestion
+from app.schemas.ask_bot import UserQuestion, ChatResponse
 from app.models.report import Company
 from app.services.classify import extract_company_name_user_prompt
 from app.services.search_db import find_closest_companies
 from app.services.ai_analysis import ask_ai_about_company
+from app.services.chatbot import make_conversation
 
 router = APIRouter()
 
 
-@router.post('/ask', response_model=str)
-def ask_bot(question: UserQuestion,  db: Session = Depends(get_db)):
-    return 'fak'
+@router.post("/ask", response_model=ChatResponse)
+async def ask_bot(question: UserQuestion, db: Session = Depends(get_db)) -> ChatResponse:
+    try:
+        response_text = make_conversation(question, db)
+
+        return ChatResponse(success=True, message=response_text)
+
+    except Exception as e:
+        return ChatResponse(success=False, message="", error=str(e))
 
 
 # @router.post('/ask', response_model=str)

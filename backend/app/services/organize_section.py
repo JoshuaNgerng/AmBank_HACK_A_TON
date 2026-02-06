@@ -1,4 +1,7 @@
 from datetime import datetime
+import re
+from typing import  TypeVar
+from difflib import SequenceMatcher
 from enum import Enum
 import json
 from typing import Iterable
@@ -8,6 +11,44 @@ from app.models.source import Source, FinancialElementBase
 from app.models.report import CompanyReport, Company, ReportingPeriod
 from app.schemas.shared_identifier import DataListBase, IdentifierBase
 from app.core.database import from_dict
+
+def _tokens(s: str) -> set[str]:
+    return set(re.findall(r"[a-z0-9]+", s.lower()))
+
+E = TypeVar("E", bound=Enum)
+def closest_str_enum_match(
+    enum: type[E],
+    value: str,
+    cutoff: float = 0.75,
+) -> E | None:
+    """
+    Find the closest matching Enum member by string value.
+
+    Returns the Enum member or None if confidence is too low.
+    """
+    if not value:
+        return None
+
+    value_tokens = _tokens(value)
+    value_norm = value.lower()
+
+    best_score = 0.0
+    best_member = None
+
+    for member in enum:
+        enum_str = str(member.value)
+        enum_tokens = _tokens(enum_str.replace("_", " "))
+
+        token_score = len(value_tokens & enum_tokens) / max(len(enum_tokens), 1)
+        seq_score = SequenceMatcher(None, value_norm, enum_str).ratio()
+
+        score = (token_score * 0.6) + (seq_score * 0.4)
+
+        if score > best_score:
+            best_score = score
+            best_member = member
+
+    return best_member if best_score >= cutoff else None
 
 def group_sections(text_sections: list[TextSection]) -> list[dict[str, str]]:
     res = []
@@ -47,20 +88,25 @@ def save_text_sections(report: CompanyReport, text_sections: list[list[TextSecti
 
 def save_ai_response_schema(
         company: Company, response: DataListBase, db_model: type[FinancialElementBase],
-        db_field: str, data_date: datetime, sources_id: Iterable[int] = []
+        db_field: str, data_date: datetime, default_year: int,
+        sources_id: Iterable[int] = []
 ):
     for statement in response.data:
         assert isinstance(statement, IdentifierBase)
         buffer = statement.model_dump()
+        # logger.info(f'converting {json.dumps(buffer, indent=2)}')
         year = statement.year
-        if not year: continue
+        if not year: year = default_year
         period = company.get_report_by_year(year)
         if not period:
             period = from_dict(ReportingPeriod, buffer)
+            period.fiscal_year = year
             period.report_date = data_date
             company.reporting_period.append(period)
         data = from_dict(db_model, buffer)
+        # logger.info(f'conversion result {json.dumps(data.to_dict(), indent=2)}')
         for id_ in sources_id: data.add_source(id_)
+        logger.info(f'check typing {type(period)} field: {db_field} data , type {type(data)}')
         setattr(period, db_field, data) # assume the lastest info is the most accurate info
 
 def flexible_iterator(data: dict, start_index=0):

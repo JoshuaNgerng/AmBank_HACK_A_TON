@@ -1,16 +1,18 @@
 from datetime import datetime, date as Date
-from typing import List, Optional
-from pydantic import BaseModel, Field
+from typing import List, Literal, Optional
+from pydantic import BaseModel, Field, ConfigDict, field_validator
 
+from app.schemas.naming_utlis import to_camel
 
 # ---------- Core Entities ----------
 
 class CompanyInfo(BaseModel):
     id: int = Field(..., description="Internal numeric identifier for the company")
-    name: str = Field(..., description="Registered legal name of the company")
-    industry: str = Field(..., description="Primary industry or sector the company operates in")
-    company_id: str = Field(..., description="Official company registration or incorporation number")
+    name: str | None = Field(default=None, description="Registered legal name of the company")
+    industry: str | None = Field(default=None, description="Primary industry or sector the company operates in")
+    company_id: str | None = Field(default=None, description="Official company registration or incorporation number")
 
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
 
 class Citation(BaseModel):
     id: str = Field(..., description="Unique citation identifier")
@@ -27,7 +29,7 @@ class ExecutiveSummary(BaseModel):
     keyPositives: List[str] = Field(..., description="List of major strengths or favorable observations")
     keyConcerns: List[str] = Field(..., description="List of key risks or areas of concern")
     confidence: float = Field(..., ge=0, le=1, description="Confidence score associated with the summary assessment")
-    riskLevel: str = Field(..., description="Overall qualitative risk level (e.g. low, moderate, high)")
+    riskLevel: Literal["low", "moderate", "high"] = Field(..., description="Overall qualitative risk level (e.g. low, moderate, high)")
 
 
 # ---------- Methodology ----------
@@ -44,7 +46,7 @@ class StrategySignal(BaseModel):
     year: int = Field(..., description="Calendar year the signal pertains to")
     summary: str = Field(..., description="Concise description of the strategic signal")
     confidence: float = Field(..., ge=0, le=1, description="Confidence score for the signal interpretation")
-    citations: List[str] = Field(..., description="List of citation IDs supporting this signal")
+    citations: List[str] = Field(default_factory=list, description="List of citation IDs supporting this signal")
 
 
 class BusinessStrategyTheme(BaseModel):
@@ -59,26 +61,31 @@ class BusinessStrategy(BusinessStrategyTheme):
 # ---------- Growth Potential ----------
 
 class GrowthPotential(BaseModel):
-    growthLevel: str = Field(..., description="Qualitative growth classification", alias='growth_level')
-    growthScore: float = Field(..., ge=0, le=1, description="Quantitative score representing growth potential", alias='growth_score')
+    growth_level: str = Field(..., description="Qualitative growth classification")
+    growth_score: float = Field(..., ge=0, le=1, description="Quantitative score representing growth potential")
     confidence: float = Field(..., ge=0, le=1, description="Confidence level in the growth assessment")
-    growthDrivers: List[str] = Field(..., description="Primary factors driving growth", alias='growth_drivers')
+    growth_drivers: List[str] = Field(..., description="Primary factors driving growth")
     constraints: List[str] = Field(..., description="Key constraints or limiting factors")
     summary: str = Field(..., description="Narrative explanation of growth outlook")
-    citations: List[str] = Field(..., description="Citation IDs supporting the growth assessment")
+    citations: List[str] = Field(default_factory=list, description="Citation IDs supporting the growth assessment")
 
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
+
+    @field_validator('summary', mode='before')
+    def check_null(v): return '' if v is None else v
 
 # ---------- Sentiment Analysis ----------
 
 class SentimentAnalysis(BaseModel):
     topic: str = Field(..., description="Topic or dimension being evaluated")
-    sentimentLabel: str = Field(..., description="Overall sentiment classification", alias='sentiment_label')
-    sentimentScore: float = Field(..., ge=-1, le=1, description="Numerical sentiment score", alias='sentiment_score')
-    confidenceLevel: str = Field(..., description="Confidence level of the sentiment assessment", alias='confidence_level')
+    sentiment_label: str = Field(..., description="Overall sentiment classification")
+    sentiment_score: float = Field(..., ge=-1, le=1, description="Numerical sentiment score")
+    confidence_level: str = Field(..., description="Confidence level of the sentiment assessment")
     rationale: str = Field(..., description="Explanation supporting the sentiment evaluation")
-    supportingSignals: List[str] = Field(..., description="Signal identifiers used to derive sentiment", alias='supporting_signals')
-    citations: List[str] = Field(..., description="Citation IDs supporting the sentiment analysis")
+    supporting_signals: List[str] = Field(..., description="Signal identifiers used to derive sentiment")
+    citations: List[str] = Field(default_factory=list, description="Citation IDs supporting the sentiment analysis")
 
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
 
 # ---------- Risk Assessment ----------
 
@@ -87,10 +94,12 @@ class RiskFactor(BaseModel):
     score: int = Field(..., description="Risk score for this factor", alias='risk_score')
     # trend: str = Field(..., description="Observed risk trend direction")
     severity: float = Field(..., ge=0, le=1, description="Severity level of the risk", alias='tone')
-    managementTone: str | None = Field(default=None, description="Observed management response posture", alias='risk_management_approach')
-    keySignals: List[str] = Field(..., description="Signals indicating the presence of this risk", alias='key_signals')
+    management_tone: str | None = Field(default=None, description="Observed management response posture", alias="managementTone")
+    key_signals: List[str] = Field(..., description="Signals indicating the presence of this risk")
     summary: str = Field(..., description="Brief explanation of the risk factor")
-    citations: List[str] = Field(..., description="Citation IDs supporting the risk assessment")
+    citations: List[str] = Field(default_factory=list, description="Citation IDs supporting the risk assessment")
+
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
 
 class RiskAssessmentBase(BaseModel):
     overallScore: int = Field(..., description="Aggregate risk score for the company")
@@ -120,3 +129,17 @@ class CompanyAnalysis(BaseModel):
     executiveSummary: ExecutiveSummary = Field(..., description="High-level executive summary of findings")
     details: Details = Field(..., description="Detailed analytical sections")
     citations: List[Citation] = Field(..., description="Reference materials used throughout the analysis")
+
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
+
+class CompanyAnalysisResult(BaseModel):
+    success: bool = Field(default=True)
+    data: CompanyAnalysis = Field(...)
+    error: str | None = Field(default=None)
+
+class CompanyListing(BaseModel):
+    success: bool = Field(default=True)
+    data: list[CompanyInfo] = Field(default_factory=list)
+    error: str | None = Field(default=None)
+
+    model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)

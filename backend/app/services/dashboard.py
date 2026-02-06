@@ -1,4 +1,5 @@
 import json
+from enum import Enum
 from datetime import datetime
 from typing import Iterable
 from sqlalchemy import select
@@ -8,7 +9,11 @@ from app.models.analysis import BusinessStrategy, RiskAnalysis, QualitativePerfo
 from app.models import CompanyDashboard
 from app.schemas.dashboard import BusinessStrategyTheme, RiskAssessmentBase, ExecutiveSummary
 from app.services.ai_prompt import get_gemini_client, GeminiRateLimitedClient
+from app.core.logging import logger
 from pydantic import BaseModel, Field
+
+from datetime import datetime, date
+from decimal import Decimal
 
 
 ## AI PLS WORK Keback
@@ -26,6 +31,39 @@ You are reading json representation of the analysis from an annual report
 
 if theres no clear info put an empty list or empty string , DONT MAKE UP info that is not given
 """
+
+def normalize_types(value):
+    """
+    Convert:
+    - Enum -> its value
+    - Decimal -> float
+    - datetime/date -> ISO 8601 string
+
+    Works recursively on dicts, lists, tuples, and sets.
+    """
+    if isinstance(value, Enum):
+        return value.value
+
+    if isinstance(value, Decimal):
+        return float(value)
+
+    if isinstance(value, (datetime, date)):
+        return value.isoformat()
+
+    if isinstance(value, dict):
+        return {k: normalize_types(v) for k, v in value.items()}
+
+    if isinstance(value, list):
+        return [normalize_types(v) for v in value]
+
+    if isinstance(value, tuple):
+        return tuple(normalize_types(v) for v in value)
+
+    if isinstance(value, set):
+        return {normalize_types(v) for v in value}
+
+    return value
+
 
 def update_dashboard(company_id: int, db: Session):
     company_info = db.execute(
@@ -69,8 +107,14 @@ def update_dashboard(company_id: int, db: Session):
             "lookbackYears": 5
         },
         "businessStrategy": business_sum,
-        "growthPotential": [report.growth_potential.to_dict() for report in report_info],
-        "sentimentAnalysis": [report.qualitative_performance.to_dict() for report in report_info],
+        "growthPotential": [
+            normalize_types(report.growth_potential.to_dict())
+            for report in report_info if report.growth_potential
+        ],
+        "sentimentAnalysis": [
+            normalize_types(report.qualitative_performance.to_dict())
+            for report in report_info if report.qualitative_performance
+        ],
         "riskAssessment": risk_assess
     }
     overall = overall_assess(details, client)
@@ -97,15 +141,28 @@ def shape_dashboard_info(company: Company, company_dashboard: CompanyDashboard) 
     }
 
 def adjust_business_sum(report_info: Iterable[ReportingPeriod], client: GeminiRateLimitedClient) -> list[dict]:
+    logger.info('check func adjust busniess sum')
     db_data = []
     for report in report_info:
-        db_data.append(report.business_strategy.to_dict())
+        if report.business_strategy:
+            db_data.append(normalize_types(report.business_strategy.to_dict()))
+    if not db_data:
+        return [
+            {
+                "theme": "No strategic theme or focus area found",
+                "consistencyScore": 0.0,
+                "trend": "null",
+                "signals": []
+            }
+        ]
+    logger.info('check before prompt')
     business_sum = client.single_prompt_answer(sys_prompt, json.dumps(db_data), AIBusinessSummary)
     if business_sum is None:
         raise ValueError(f'AI summarizing busniess info failed')
     assert isinstance(business_sum, AIBusinessSummary)
     buffer_business_sum = []
     for sum in business_sum.business_sum:
+        logger.info(f'summary: {sum.model_dump_json(indent=2)}')
         signals = []
         for id_ in sum.source_ids:
             buffer = next((d for d in db_data if d["id"] == id_), None)
@@ -119,7 +176,15 @@ def adjust_business_sum(report_info: Iterable[ReportingPeriod], client: GeminiRa
 def adjust_risk_assess(report_info: Iterable[ReportingPeriod], client: GeminiRateLimitedClient) -> dict:
     db_data = []
     for report in report_info:
-        db_data.append(report.risk_analysis.to_dict())
+        if report.risk_analysis:
+            db_data.append(normalize_types(report.risk_analysis.to_dict()))
+    if not db_data:
+        return {
+            "overallScore": 0,
+            "posture": "null",
+            "summary": "No info on company’s risk profile found",
+            "factors": []
+        }
     risk_assess = client.single_prompt_answer(sys_prompt, json.dumps(db_data), RiskAssessmentBase)
     if risk_assess is None:
         raise ValueError(f'AI summarizing risk assesment failed')

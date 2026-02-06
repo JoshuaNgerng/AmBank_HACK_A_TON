@@ -151,24 +151,28 @@ class ReportingPeriod(TableBase):
     # Finicial Analysis
 
     business_strategy: Mapped["BusinessStrategy"] = relationship(
+        "BusinessStrategy",
         back_populates="reporting_period",
         uselist=False,
         cascade="all, delete-orphan"
     )
 
     risk_analysis: Mapped["RiskAnalysis"] = relationship(
+        "RiskAnalysis",
         back_populates="reporting_period",
         uselist=False,
         cascade="all, delete-orphan"
     )
 
     qualitative_performance: Mapped["QualitativePerformance"] = relationship(
+        "QualitativePerformance",
         back_populates="reporting_period",
         uselist=False,
         cascade="all, delete-orphan"
     )
 
     growth_potential: Mapped["GrowthPotential"] = relationship(
+        "GrowthPotential",
         back_populates="reporting_period",
         uselist=False,
         cascade="all, delete-orphan"
@@ -201,17 +205,18 @@ class CompanyReport(TableBase):
 class Company(TableBase):
     __tablename__ = "company"
 
-    company_id: Mapped[str] = mapped_column(String(100), unique=True)  
+    company_id: Mapped[str | None] = mapped_column(String(100), unique=True, nullable=True)  
     # ticker, registration number, etc.
-    company_name: Mapped[str] = mapped_column(String(200))
+    company_name: Mapped[str | None] = mapped_column(String(200), nullable=True)
 
-    industry: Mapped[Industry] = mapped_column(
+    industry: Mapped[Industry | None] = mapped_column(
         Enum(
             Industry,
             name="industry_enum",
             native_enum=True,     # use PostgreSQL ENUM
             create_constraint=True,
-        )
+        ),
+        nullable=True
     )
 
     company_reports: Mapped[list["CompanyReport"]] = relationship(

@@ -67,9 +67,10 @@ def get_all_incomplete_task_id(db: Session = Depends(get_db)):
     report_info = db.execute(
         select(CompanyReport.id, CompanyReport.file_key)
         .where(CompanyReport.id.in_(report_id))
-    ).scalars().all()
+    ).fetchall()
     res = []
     for task in data:
+        print(type(report_info), type(report_info[0]))
         result = next((file for id_, file in report_info if id_ == task.report_id), '')
         res.append(
             IncompleteTasks(
@@ -92,4 +93,17 @@ def rerun_task(task_id: int, db: Session = Depends(get_db)):
     task = rerun_analysis_ocr_result.apply_async(args=[task_id]) # type: ignore celery
     return ReportProcessingStatus(
         status=f"rerun processing task {task_id} with celery task {task.id}"
+    )    
+
+@router.get('/rerun_report_analysis/{report_id}', response_model=ReportProcessingStatus)
+def rerun_analysis(report_id: int, db: Session = Depends(get_db)):
+    report_info = db.execute(
+        select(CompanyReport)
+        .where(CompanyReport.id == report_id)
+    ).scalar_one_or_none()
+    if not report_info:
+        raise HTTPException(status_code=404, detail=f"Company report: {report_id} not found")
+    task = analysis_ocr_result.apply_async(args=[report_id, True]) # type: ignore celery
+    return ReportProcessingStatus(
+        status=f"rerun processing report {report_id} with celery task {task.id}"
     )    

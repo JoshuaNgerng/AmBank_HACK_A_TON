@@ -1,5 +1,6 @@
 import json
 from copy import deepcopy
+from datetime import datetime
 from functools import lru_cache
 from string import Template
 from app.core.database import from_dict
@@ -120,20 +121,20 @@ $body
 def __cache_mapping():
     return {
         PossibleSignal.business_strategy: (sys_prompt_business_strategy, BusinessStrategyData, BusinessStrategy),
-        PossibleSignal.growth_potential: (sys_prompt_growth_potential, RiskAnalysisData, RiskAnalysis),
-        PossibleSignal.risk_analysis: (sys_prompt_risk_analysis, QualitativePerformanceData, QualitativePerformance),
-        PossibleSignal.qualitative_performance: (sys_prompt_qualitative_performance, GrowthPotentialData, GrowthPotential)
+        PossibleSignal.growth_potential: (sys_prompt_growth_potential, GrowthPotentialData, GrowthPotential),
+        PossibleSignal.risk_analysis: (sys_prompt_risk_analysis, RiskAnalysisData, RiskAnalysis),
+        PossibleSignal.qualitative_performance: (sys_prompt_qualitative_performance, QualitativePerformanceData, QualitativePerformance),
     }
 
 def prepare_text_analysis(sources: list[Source]):
-    data_group : dict[str, list[tuple[str, str, int]]] = {}
+    data_group : dict[PossibleSignal, list[tuple[str, str, int]]] = {}
     for data in sources:
         if not data.body:
             continue
         for signal in data.signals:
-            check = data_group.get(str(signal))
+            check = data_group.get(signal)
             if not check:
-                data_group[str(signal)] = [
+                data_group[signal] = [
                     (data.title or '', data.tables or '', data.id)
                 ]
             else:
@@ -143,22 +144,25 @@ def prepare_text_analysis(sources: list[Source]):
 def extract_text_from_sources(
         report: CompanyReport, company: Company,
         data_group: dict[str, list[tuple[str, str, int]]] | None = None,
-        start_index: int = 0
+        start_index: int = 0, expected_year: int | None = None 
 ):
     mapping = __cache_mapping()
     if not data_group:
         data = prepare_text_analysis(report.report_sources)
     else:
         data = adjust_raw_json_with_enum(data_group, PossibleSignal)
+    if not expected_year: expected_year = int(datetime.now().year)
+    logger.info(f'checking data fields {data.keys()}')
     client = get_gemini_client()
-    for idx, type, (sys_prompt, prompt_schema, db_model) in flexible_iterator(mapping, start_index):
+    for idx, type_, (sys_prompt, prompt_schema, db_model) in flexible_iterator(mapping, start_index):
         try:
-            buffer = data[type]
+            buffer = data[type_]
         except:
             logger.warning(
-                f'{report.celery_task_id}, {report.file_key}: {type} not found'
+                f'{report.celery_task_id}, {report.file_key}: {type_} not found'
             )
             continue
+        logger.info(f'checking prompt with {type_}')
         usr_prompt = ''
         source_ids = []
         for title, body, source_id in buffer:
@@ -171,7 +175,8 @@ def extract_text_from_sources(
         if not response:
             return {'status': False, 'data': adjust_json_enum_key_2_str(data), 'index': idx}
         save_ai_response_schema(
-            company, response, db_model, type, # type: ignore
-            report.uploaded_at, sources_id=source_ids
+            company, response, db_model, type_.value, # type: ignore
+            report.uploaded_at, default_year=expected_year,
+            sources_id=source_ids
         )
     return {'status': True, 'data': None, 'index': None}

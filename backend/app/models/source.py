@@ -159,4 +159,4 @@ class FinancialElementBase(SourceLinker):
     )
     @declared_attr
     def reporting_period(cls) -> Mapped["ReportingPeriod"]:
-        return relationship(back_populates=cls.__tablename__)
+        return relationship("ReportingPeriod", back_populates=cls.__tablename__)
