@@ -20,7 +20,7 @@ with get_db_session() as db:
     # report.growth_potential = from_dict(GrowthPotential, data)
     # db.commit()
     dashboard = db.execute(
-        select(CompanyDashboard)
+        select(CompanyDashboard).where(CompanyDashboard.company_id == 2)
     ).scalars().first()
     company = db.execute(
         select(Company).where(Company.id == dashboard.company_id)

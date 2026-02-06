@@ -59,6 +59,8 @@ async def get_company_detail(
     try:
         if not company_dashboard:
             buffer = await update_company_dashboard(company_id, db)
+        elif company_dashboard.overall:
+            buffer = company_dashboard.overall
         elif not company_dashboard.summary or not company_dashboard.details:
             buffer = await update_company_dashboard(company_id, db)
         else:

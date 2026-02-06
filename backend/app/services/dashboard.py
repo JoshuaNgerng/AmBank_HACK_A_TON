@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session, selectinload
 from app.models.report import Company, ReportingPeriod
 from app.models.analysis import BusinessStrategy, RiskAnalysis, QualitativePerformance, GrowthPotential
 from app.models import CompanyDashboard
-from app.schemas.dashboard import BusinessStrategyTheme, RiskAssessmentBase, ExecutiveSummary
+from app.schemas.dashboard import BusinessStrategyTheme, RiskAssessmentBase, ExecutiveSummary, CompanyAnalysis
 from app.services.ai_prompt import get_gemini_client, GeminiRateLimitedClient
 from app.core.logging import logger
 from pydantic import BaseModel, Field
@@ -120,8 +120,11 @@ def update_dashboard(company_id: int, db: Session):
     overall = overall_assess(details, client)
     company_dashboard.details = details
     company_dashboard.summary = overall
+    data =  shape_dashboard_info(company_info, company_dashboard)
+    data = make_sht_up_dashboard(data)
+    company_dashboard.overall = normalize_types(data)
     db.commit()
-    return shape_dashboard_info(company_info, company_dashboard)
+    return data
 
 def shape_dashboard_info(company: Company, company_dashboard: CompanyDashboard) -> dict:
     overall = company_dashboard.summary
@@ -139,6 +142,32 @@ def shape_dashboard_info(company: Company, company_dashboard: CompanyDashboard) 
         "details": details,
         "citations": []
     }
+
+def make_sht_up_dashboard(data: dict) -> dict:
+    client = get_gemini_client()
+    sys_prompt = """
+You are a financial research assistant.
+
+Your task is to analyze and summarize a JSON representation of a company’s financial and business data, grouping related information into clear, structured sections.
+
+If required information is missing, incomplete, or unclear:
+- Identify the specific missing fields
+- Search the internet for relevant, up-to-date, and reliable information to fill in the gaps
+- Prefer primary sources (company filings, investor relations pages, official websites) and reputable secondary sources (financial news outlets, market data providers)
+
+When incorporating external information:
+- Clearly distinguish between data derived from the input JSON and data sourced externally
+- Cite the source and date for any information obtained from the internet
+- If multiple sources disagree, note the discrepancy and provide the most widely accepted or most recent data
+
+If information cannot be reliably found:
+- Explicitly state that the data is unavailable or uncertain
+- Do not speculate or fabricate values
+
+Return the final output as structured JSON, preserving the original schema and adding only the missing fields that were identified.
+"""
+    res = client.single_prompt_answer(sys_prompt, json.dumps(data), CompanyAnalysis)
+    return res.model_dump() # type: ignore
 
 def adjust_business_sum(report_info: Iterable[ReportingPeriod], client: GeminiRateLimitedClient) -> list[dict]:
     logger.info('check func adjust busniess sum')

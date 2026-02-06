@@ -2,7 +2,7 @@ import { Rocket, TrendingUp, AlertCircle } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { GrowthPotential } from '@/types/market';
+import { GrowthPotential, DegreeLevel } from '@/types/market';
 import { cn } from '@/lib/utils';
 
 interface GrowthPotentialPanelProps {
@@ -10,9 +10,30 @@ interface GrowthPotentialPanelProps {
 }
 
 const levelConfig = {
+  very_low: { color: 'text-adverse', bg: 'bg-adverse/10', label: 'Very Low' },
   low: { color: 'text-adverse', bg: 'bg-adverse/10', label: 'Low' },
   medium: { color: 'text-warning', bg: 'bg-warning/10', label: 'Medium' },
   high: { color: 'text-positive', bg: 'bg-positive/10', label: 'High' },
+  very_high: { color: 'text-positive', bg: 'bg-positive/10', label: 'Very High' },
+};
+
+const mapDegreeToKey = (degree: DegreeLevel): keyof typeof levelConfig => {
+  const normalized = degree.toLowerCase(); // convert input to lowercase
+
+  switch (normalized) {
+    case 'very low':
+      return 'very_low';
+    case 'low':
+      return 'low';
+    case 'moderate':
+      return 'medium';
+    case 'high':
+      return 'high';
+    case 'very high':
+      return 'very_high';
+    default:
+      return 'medium';
+  }
 };
 
 export function GrowthPotentialPanel({ growth }: GrowthPotentialPanelProps) {
@@ -28,7 +49,8 @@ export function GrowthPotentialPanel({ growth }: GrowthPotentialPanelProps) {
         <ScrollArea className="h-[320px] scrollbar-thin pr-2">
           <div className="space-y-4">
             {growth.map((item, index) => {
-              const config = levelConfig[item.growthLevel];
+              console.log(item.growthLevel)
+              const config = levelConfig[mapDegreeToKey(item.growthLevel)];
 
               return (
                 <div key={index} className="space-y-4">

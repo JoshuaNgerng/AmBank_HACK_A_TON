@@ -160,7 +160,7 @@ def rerun_analysis_ocr_result(self, task_id: int):
     mapping = cache_mapping()
     with get_db_session() as db:
         task = db.execute(
-            select(TaskProgress).where(TaskProgress.celery_task_id == task_id)
+            select(TaskProgress).where(TaskProgress.id == task_id)
         ).scalar_one_or_none()
         if not task:
             raise ValueError(f'Cannot find task progress {task_id}')
@@ -182,8 +182,7 @@ def rerun_analysis_ocr_result(self, task_id: int):
                     func, msg = mapping[state]
                     check = func(
                         report, report.company, task.immediatory_state, 
-                        expected_year=report.report_year,
-                        resume_index=index
+                        report.report_year, index
                     )
                     if not check['status']:
                         raise ProgressException(

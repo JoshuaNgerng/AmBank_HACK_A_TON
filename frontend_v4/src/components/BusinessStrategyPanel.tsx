@@ -22,6 +22,19 @@ const trendColors = {
   stable: 'text-muted-foreground',
 };
 
+const mapDegreeToKey = (val: string): string => {
+  switch (val) {
+    case 'up':
+      return 'up';
+    case 'down':
+      return 'down';
+    case 'stable':
+      return 'stable';
+    default:
+      return 'down'
+  }
+};
+
 export function BusinessStrategyPanel({ strategies }: BusinessStrategyPanelProps) {
   return (
     <Card className="glass-card h-full">
@@ -35,8 +48,24 @@ export function BusinessStrategyPanel({ strategies }: BusinessStrategyPanelProps
         <ScrollArea className="h-[320px] scrollbar-thin pr-2">
           <Accordion type="single" collapsible className="space-y-2">
             {strategies.map((strategy, index) => {
-              const TrendIcon = trendIcons[strategy.trend];
-
+              const TrendIcon = trendIcons[mapDegreeToKey(strategy.trend)];
+            if (strategies.length === 0) {
+              return (
+                <Card className="glass-card h-full">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg font-semibold flex items-center gap-2">
+                      <Target className="h-5 w-5 text-primary" />
+                      Business Strategy
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex items-center justify-center h-[320px]">
+                    <p className="text-sm text-muted-foreground">
+                      No business strategies available
+                    </p>
+                  </CardContent>
+                </Card>
+              );
+            }
               return (
                 <AccordionItem
                   key={index}
@@ -51,7 +80,8 @@ export function BusinessStrategyPanel({ strategies }: BusinessStrategyPanelProps
                           <Badge variant="outline" className="text-[10px] px-1.5 py-0">
                             {Math.round(strategy.consistencyScore * 100)}% consistent
                           </Badge>
-                          <div className={cn("flex items-center gap-1", trendColors[strategy.trend])}>
+                          {/* console.log(strategy.trend) */}
+                          <div className={cn("flex items-center gap-1", trendColors[mapDegreeToKey(strategy.trend)])}>
                             <TrendIcon className="h-3 w-3" />
                             <span className="text-xs capitalize">{strategy.trend}</span>
                           </div>

@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-import { SentimentAnalysis } from '@/types/market';
+import { SentimentAnalysis, DegreeLevel } from '@/types/market';
 import { cn } from '@/lib/utils';
 
 interface SentimentPanelProps {
@@ -32,10 +32,31 @@ const sentimentConfig = {
   },
 };
 
+const mapDegreeToKey = (degree: DegreeLevel): keyof typeof levelConfig => {
+  const normalized = degree.toLowerCase(); // convert input to lowercase
+
+  switch (normalized) {
+    case 'very low':
+      return 'very_low';
+    case 'low':
+      return 'low';
+    case 'moderate':
+      return 'medium';
+    case 'high':
+      return 'high';
+    case 'very high':
+      return 'very_high';
+    default:
+      return 'medium';
+  }
+};
+
 const confidenceConfig = {
+  very_low: { color: 'text-adverse', bg: 'bg-adverse/10', label: 'Very low confidence' },
   low: { color: 'text-adverse', label: 'Low confidence' },
   medium: { color: 'text-warning', label: 'Medium confidence' },
   high: { color: 'text-positive', label: 'High confidence' },
+  very_high: { color: 'text-positive', bg: 'bg-positive/10', label: 'Very high confidence' },
 };
 
 export function SentimentPanel({ analysis }: SentimentPanelProps) {
@@ -51,8 +72,10 @@ export function SentimentPanel({ analysis }: SentimentPanelProps) {
         <ScrollArea className="h-[320px] scrollbar-thin pr-2">
           <Accordion type="single" collapsible className="space-y-2">
             {analysis.map((item, index) => {
+              console.log(item.sentimentLabel)
+              console.log(item.confidenceLevel)
               const config = sentimentConfig[item.sentimentLabel];
-              const confConfig = confidenceConfig[item.confidence_level];
+              const confConfig = confidenceConfig[mapDegreeToKey(item.confidenceLevel)];
               const Icon = config.icon;
               const scorePercent = Math.abs(item.sentimentScore * 100);
 

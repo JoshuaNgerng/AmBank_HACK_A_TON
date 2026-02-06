@@ -6,6 +6,13 @@ export interface Company {
   companyId: string; // Registration ID
 }
 
+export type DegreeLevel =
+  | 'Very Low'
+  | 'Low'
+  | 'Moderate'
+  | 'High'
+  | 'Very High';
+
 // Executive Summary
 export interface ExecutiveSummary {
   overview: string;
@@ -33,7 +40,7 @@ export interface BusinessStrategy {
 
 // Growth Potential
 export interface GrowthPotential {
-  growthLevel: 'low' | 'medium' | 'high';
+  growthLevel: DegreeLevel;
   growthScore: number;
   confidence: number;
   growthDrivers: string[];
@@ -46,7 +53,7 @@ export interface SentimentAnalysis {
   topic: string;
   sentimentLabel: 'positive' | 'negative' | 'neutral';
   sentimentScore: number;
-  confidence_level: 'low' | 'medium' | 'high';
+  confidenceLevel: DegreeLevel;
   rationale: string;
   supportingSignals: string[];
 }
@@ -65,7 +72,7 @@ export interface RiskFactor {
 // Risk Assessment
 export interface RiskAssessment {
   overallScore: number;
-  posture: 'low' | 'moderate' | 'high';
+  posture: DegreeLevel;
   summary: string;
   factors: RiskFactor[];
 }

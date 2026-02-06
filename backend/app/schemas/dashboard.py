@@ -43,11 +43,16 @@ class Methodology(BaseModel):
 # ---------- Business Strategy ----------
 
 class StrategySignal(BaseModel):
-    year: int = Field(..., description="Calendar year the signal pertains to")
+    year: int = Field(default=int(datetime.now().year) - 1, description="Calendar year the signal pertains to")
     summary: str = Field(..., description="Concise description of the strategic signal")
     confidence: float = Field(..., ge=0, le=1, description="Confidence score for the signal interpretation")
     citations: List[str] = Field(default_factory=list, description="List of citation IDs supporting this signal")
 
+    @field_validator('summary', mode='before')
+    def check_null(v): return '' if v is None else v
+
+    @field_validator('year', mode='before')
+    def check_null_yr(v): return int(datetime.now().year) - 1 if v is None else v
 
 class BusinessStrategyTheme(BaseModel):
     theme: str = Field(..., description="Strategic theme or focus area")
@@ -101,10 +106,16 @@ class RiskFactor(BaseModel):
 
     model_config = ConfigDict(alias_generator=to_camel, populate_by_name=True)
 
+    @field_validator('summary', mode='before')
+    def check_null(v): return '' if v is None else v
+
 class RiskAssessmentBase(BaseModel):
     overallScore: int = Field(..., description="Aggregate risk score for the company")
     posture: str = Field(..., description="Overall qualitative risk posture")
     summary: str = Field(..., description="Narrative summary of the company’s risk profile")
+
+    @field_validator('summary', mode='before')
+    def check_null(v): return '' if v is None else v
 
 class RiskAssessment(RiskAssessmentBase):
     factors: List[RiskFactor] = Field(..., description="Individual contributing risk factors")

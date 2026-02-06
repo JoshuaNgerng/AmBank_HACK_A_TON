@@ -33,7 +33,7 @@ export async function fetchCompanies(searchQuery?: string): Promise<Company[]> {
 
   // Real API call
   const endpoint = searchQuery 
-    ? `${API_CONFIG.companies.search}?q=${encodeURIComponent(searchQuery)}`
+    ? `${API_CONFIG.companies.list}?name=${encodeURIComponent(searchQuery)}`
     : API_CONFIG.companies.list;
 
   const response = await apiClient.get<CompaniesListResponse>(endpoint);

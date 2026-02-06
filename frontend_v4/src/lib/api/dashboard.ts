@@ -21,16 +21,10 @@ export async function analyzeCompany(company: Company): Promise<DashboardData> {
   }
 
   // Real API call
-  const request: AnalyzeCompanyRequest = {
-    id: company.id,
-    companyId: company.companyId,
-    name: company.name,
-    industry: company.industry,
-  };
+  const endpoint = `${API_CONFIG.dashboard.base}/${company.id}`;
 
-  const response = await apiClient.post<AnalyzeCompanyResponse>(
-    API_CONFIG.dashboard.analyze,
-    request
+  const response = await apiClient.get<AnalyzeCompanyResponse>(
+    endpoint
   );
 
   if (!response.success || !response.data) {
